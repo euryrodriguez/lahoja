@@ -1,1 +1,23 @@
-//
+#top-bar{
+  box-shadow: 1px 1px 1px #3292a6;
+  opacity: 0.9;
+  background: #fff;
+}
+
+.navbar-brand{
+  font-family: 'Pacifico', cursive;
+}
+
+.hoja-shadow{
+  box-shadow: 1px 1px 5px 0px #3292a6;
+  opacity: 0.9;
+  background: #fff;
+  border: 1px solid;
+  border-color: #2196F3;
+  height: 650px;
+}
+
+#card-info{
+  height: 650px;
+  overflow-x: scroll;
+}

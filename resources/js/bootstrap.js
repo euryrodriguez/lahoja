@@ -8,7 +8,6 @@ import * as icheck from "icheck";
 
 export {jquery};
 export {bs};
-export {jqnumber};
 export {sweetalert};
 export {jqchosen};
 export {toastr}
