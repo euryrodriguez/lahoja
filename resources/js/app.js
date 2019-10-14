@@ -29,6 +29,7 @@ $(document).ready(() => {
     const deadlineSpan = $('.DeadlineSpan');
     const InputDeadline = $('#InputDeadline');
     const printBtn = $('#print-btn');
+    const $datepicker = $('#datepicker');
 
     selectUniversityObj.chosen().change((evt, params) => {
 
@@ -38,14 +39,14 @@ $(document).ready(() => {
         const folder = values[1];
         const iParsed = parseInt(index) - 1;
         const filename = (universidadesArr[0][iParsed] != "undefined") ? universidadesArr[0][iParsed].filename : '';
-        const optionSelectedText = $(selectUniversityId+' option:selected').text().trim();
-        const path = app.getBaseUrl() + "universidades/" + folder + "/"+filename;
-        const nombreUniversidad =  optionSelectedText.split(' (')[0];
+        const optionSelectedText = $(selectUniversityId + ' option:selected').text().trim();
+        const path = app.getBaseUrl() + "universidades/" + folder + "/" + filename;
+        const nombreUniversidad = optionSelectedText.split(' (')[0];
         const optionSelectedSiglaText = optionSelectedText.split(' (')[1].replace(')', '');
 
         hojaContent.find('.universityNameSpan').html(nombreUniversidad);
 
-        hojaContent.find('div#isoTipoUniversidad').html('<img src="'+path+'" class="text-align-center" width="100" height="95" alt="logo universidad">');
+        hojaContent.find('div#isoTipoUniversidad').html('<img src="' + path + '" class="text-align-center" width="100" height="95" alt="logo universidad">');
 
     });
 
@@ -69,12 +70,12 @@ $(document).ready(() => {
         teacherSpan.html(selector.val());
     });
 
-    InputDeadline.on('change', (e) => {
-        let selector = $(e.target),
-            valueSelected = selector.prop('value'),
-            todayDate = new Date(valueSelected),
-            deadLineDate = todayDate.setDate(todayDate.getDate() + 1),
-            deadLineDateSTR = new Date(deadLineDate).toLocaleDateString("es-ES").replace(/\//g, "-");
-        deadlineSpan.html(deadLineDateSTR);
+    $datepicker.datepicker({
+        uiLibrary: 'bootstrap4',
+        change: function (e) {
+            const selector = $(this),
+                  date = selector.val();
+            deadlineSpan.html(date);
+        }
     });
 });

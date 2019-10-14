@@ -26,8 +26,8 @@
                                 <input type="text" class="form-control" id="InputMatricula" placeholder="Matrícula">
                             </div>
                             <div class="form-group">
-                                <label for="InputDeadline" class="font-weight-bold">Fecha:</label>
-                                <input type="date" class="form-control" id="InputDeadline" placeholder="DD/MM/YYYY">
+                                <label for="datepicker" class="font-weight-bold">Fecha:</label>
+                                <input type="text" readonly class="form-control" id="datepicker" placeholder="DD/MM/YYYY">
                             </div>
                             <div class="form-group">
                                 <label for="InputName" class="font-weight-bold">Nombre:</label>
@@ -52,16 +52,18 @@
                 <div class="card border-primary mb-3">
                     <div class="card-header"><span class="font-weight-bold">Opciones</span></div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary btn-sm mt-2">Small button
+                        <button type="button" class="btn btn-primary btn-sm mt-2">
+                            Descargar
                             <i class="fa fa-download" aria-hidden="true"></i>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm mt-2">
-                            Small button
-                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Imprimir
+                            <i class="fa fa-print" aria-hidden="true"></i>
                         </button>
+                        <br>
                         <button type="button" class="btn btn-info btn-sm mt-2">
-                            Small button
-                            <i class="fa fa-download" aria-hidden="true"></i>
+                            Limpiar
+                            <i class="fa fa-backward" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>

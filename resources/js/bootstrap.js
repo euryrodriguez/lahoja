@@ -5,11 +5,12 @@ import * as sweetalert from "sweetalert";
 import * as jqchosen from "chosen-js";
 import * as toastr from "toastr";
 import * as icheck from "icheck";
+import * as gijgo from "gijgo";
 
 export {jquery};
 export {bs};
 export {sweetalert};
 export {jqchosen};
-export {toastr}
-export {icheck}
-
+export {toastr};
+export {icheck};
+export {gijgo};

@@ -21,7 +21,17 @@ export class Util {
     }
 
     getBaseUrl() {
-        return window.location.protocol + "//" + window.location.host + window.location.pathname;
+
+        let url = "";
+        const loc = window.location;
+        const pathparts = location.pathname.split('/');
+
+        if (location.host == 'localhost') {
+            url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + '/' + pathparts[1] + '/' + pathparts[2].trim('/') + '/';
+        } else {
+            url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/";
+        }
+        return url;
     }
 
 
