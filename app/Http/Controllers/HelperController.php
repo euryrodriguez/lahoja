@@ -9,8 +9,10 @@ class HelperController extends Controller
 {
     public function getImagenesCollection()
     {
+        $all = Imagen::all();
+
         echo json_encode([
-            'imagenes' => Imagen::all(),
+            'imagenes' => $all,
             'result' => 1
         ]);
     }

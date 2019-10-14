@@ -29,7 +29,7 @@
 <meta name="robots" content="index, follow"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>@yield('title') hoja.org | Hojas de presentación</title>
+<title>@yield('title') lahoja.org | Hojas de presentación</title>
 
 <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">

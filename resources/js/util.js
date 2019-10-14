@@ -67,18 +67,26 @@ export class Util {
 
         const url = this.getBaseUrl() + '/universidades/all';
 
-        let universities = [];
+        return new Promise((resolve, reject) => {
 
-        $.get(url).done(function (data) {
-            let result = JSON.parse(data);
-            if (result.result === 1) {
-                universities[0] = result.imagenes;
-            } else {
-                swal("Operacion Fallida", 'Error', 'Error');
-            }
+            let universities = [];
+
+            $.get(url).done(function (data) {
+                let result = JSON.parse(data);
+                if (result.result === 1) {
+                    resolve(result.imagenes);
+                } else {
+                    swal("Operacion Fallida", 'Error', 'Error');
+                    reject(null);
+                }
+            });
         });
-
-        return universities;
     }
+
+    dateToSpanish(engDate) {
+        let dateArr = engDate.split('/');
+        return dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
+    }
+
 
 }

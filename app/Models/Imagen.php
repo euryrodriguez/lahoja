@@ -11,6 +11,7 @@ class Imagen extends Model
 
     protected $table = 'images';
     protected $fillable = ['filename', 'universityId'];
+    protected $hidden = ["created_at", "updated_at", "deleted_at"];
 
     public function University(){
         return $this->belongsTo('App\Models\Universidad', 'universities.id', 'universityId');

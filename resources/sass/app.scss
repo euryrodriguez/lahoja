@@ -9,7 +9,7 @@
 }
 
 .hoja-shadow{
-  box-shadow: 1px 1px 5px 0px #3292a6;
+  box-shadow: 1px 1px 5px 0 #3292a6;
   opacity: 0.9;
   background: #fff;
   border: 1px solid;
@@ -20,4 +20,17 @@
 #card-info{
   height: 650px;
   overflow-x: scroll;
+}
+footer{
+    height: auto;
+    background: #f0f0f0;
+    border-top: #2196F3;
+}
+#links-footer{
+    list-style: none;
+}
+#links-footer li{
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 40px;
 }

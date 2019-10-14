@@ -10,12 +10,12 @@ class App extends Util {
 
 const app = new App();
 
-$(document).ready(() => {
+$(document).ready(async () => {
 
     app.initPlugins();
 
     const hojaContent = $('#hoja-content');
-    const universidadesArr = app.getUniversidades();
+    const universidadesArr = await app.getUniversidades();
     const selectUniversityId = '#universitySelect';
     const selectUniversityObj = $(selectUniversityId);
     const studentName = $('.studentName');
@@ -37,36 +37,35 @@ $(document).ready(() => {
         const values = selected.split('-');
         const index = values[0];
         const folder = values[1];
-        const iParsed = parseInt(index) - 1;
-        const filename = (universidadesArr[0][iParsed] != "undefined") ? universidadesArr[0][iParsed].filename : '';
+        const indice = parseInt(index) - 1;
         const optionSelectedText = $(selectUniversityId + ' option:selected').text().trim();
+        const filename = (universidadesArr[indice] != "undefined") ? universidadesArr[indice].filename : '';
         const path = app.getBaseUrl() + "universidades/" + folder + "/" + filename;
         const nombreUniversidad = optionSelectedText.split(' (')[0];
-        const optionSelectedSiglaText = optionSelectedText.split(' (')[1].replace(')', '');
+        const siglasUniversidad = optionSelectedText.split(' (')[1].replace(')', '');
 
         hojaContent.find('.universityNameSpan').html(nombreUniversidad);
-
         hojaContent.find('div#isoTipoUniversidad').html('<img src="' + path + '" class="text-align-center" width="100" height="95" alt="logo universidad">');
 
     });
 
     InputName.on('keyup', (e) => {
-        let selector = $(e.target);
+        const selector = $(e.target);
         studentName.html(selector.val());
     });
 
     InputMatricula.on('keyup', (e) => {
-        let selector = $(e.target);
+        const selector = $(e.target);
         enrollmentSpan.html(selector.val());
     });
 
     InputSubject.on('keyup', (e) => {
-        let selector = $(e.target);
+        const selector = $(e.target);
         subjectSpan.html(selector.val());
     });
 
     InputTeacher.on('keyup', (e) => {
-        let selector = $(e.target);
+        const selector = $(e.target);
         teacherSpan.html(selector.val());
     });
 
@@ -75,7 +74,7 @@ $(document).ready(() => {
         change: function (e) {
             const selector = $(this),
                   date = selector.val();
-            deadlineSpan.html(date);
+            deadlineSpan.html(app.dateToSpanish(date));
         }
     });
 });

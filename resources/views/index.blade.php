@@ -3,7 +3,7 @@
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-md-4">
-                <div class="card border-primary mb-3" id="card-info">
+                <div class="card mb-3" id="card-info">
                     <div class="card-header"><span class="font-weight-bold">Información Requerida</span></div>
                     <div class="card-body">
                         <form class="form" method="POST" action="">
@@ -49,19 +49,19 @@
                 @include('template.partials.result')
             </div>
             <div class="col-md-2">
-                <div class="card border-primary mb-3">
+                <div class="card mb-3">
                     <div class="card-header"><span class="font-weight-bold">Opciones</span></div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary btn-sm mt-2">
+                        <button type="button" class="btn btn-success btn-sm mt-2">
                             Descargar
                             <i class="fa fa-download" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm mt-2">
+                        <button type="button" class="btn btn-info btn-sm mt-2">
                             Imprimir
                             <i class="fa fa-print" aria-hidden="true"></i>
                         </button>
                         <br>
-                        <button type="button" class="btn btn-info btn-sm mt-2">
+                        <button type="button" class="btn btn-danger btn-sm mt-2">
                             Limpiar
                             <i class="fa fa-backward" aria-hidden="true"></i>
                         </button>
