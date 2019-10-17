@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index($universityName = NULL)
     {
         $all = Universidad::all();
-        return view('index')->with('universities', $all);
+
+        if (NULL == $universityName) {
+            return view('index')->with('universities', $all);
+        } else {
+            return view('index')->with('universities', $all)->with('universityName', $universityName);
+        }
+
     }
 }

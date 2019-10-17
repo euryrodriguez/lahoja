@@ -16,7 +16,7 @@ $(document).ready(async () => {
 
     const hojaContent = $('#hoja-content');
     const universidadesArr = await app.getUniversidades();
-    const selectUniversityId = '#universitySelect';
+    const selectUniversityId = '#selectUniversity';
     const selectUniversityObj = $(selectUniversityId);
     const studentName = $('.studentName');
     const InputName = $('#InputName');
@@ -28,7 +28,7 @@ $(document).ready(async () => {
     const InputTeacher = $('#InputTeacher');
     const deadlineSpan = $('.DeadlineSpan');
     const InputDeadline = $('#InputDeadline');
-    const printBtn = $('#print-btn');
+    const printBtn = $('#printBtn');
     const $datepicker = $('#datepicker');
 
     selectUniversityObj.chosen().change((evt, params) => {
@@ -49,32 +49,65 @@ $(document).ready(async () => {
 
     });
 
+    const studentNameLabel = studentName.text();
+
     InputName.on('keyup', (e) => {
         const selector = $(e.target);
-        studentName.html(selector.val());
+        const valor = selector.val();
+        if (valor.trim().length > 0) {
+            studentName.html(selector.val());
+        } else {
+            studentName.html(studentNameLabel);
+        }
     });
+
+    const enrollmentSpanLabel = enrollmentSpan.text();
 
     InputMatricula.on('keyup', (e) => {
         const selector = $(e.target);
-        enrollmentSpan.html(selector.val());
+        const valor = selector.val();
+        if (valor.trim().length > 0) {
+            enrollmentSpan.html(selector.val());
+        } else {
+            enrollmentSpan.html(enrollmentSpanLabel);
+        }
     });
+
+    const subjectSpanLabel = subjectSpan.text();
 
     InputSubject.on('keyup', (e) => {
         const selector = $(e.target);
-        subjectSpan.html(selector.val());
+        const valor = selector.val();
+        if (valor.trim().length > 0) {
+            subjectSpan.html(valor);
+        } else {
+            subjectSpan.html(subjectSpanLabel);
+        }
     });
+
+    const teacherSpanLabel = teacherSpan.text();
 
     InputTeacher.on('keyup', (e) => {
         const selector = $(e.target);
-        teacherSpan.html(selector.val());
+        const valor = selector.val();
+        if (valor.trim().length > 0) {
+            teacherSpan.html(valor);
+        } else {
+            teacherSpan.html(teacherSpanLabel);
+        }
     });
 
     $datepicker.datepicker({
         uiLibrary: 'bootstrap4',
         change: function (e) {
             const selector = $(this),
-                  date = selector.val();
+                date = selector.val();
             deadlineSpan.html(app.dateToSpanish(date));
         }
     });
+
+    printBtn.on('click', (e) => {
+        app.printElement('hoja-content');
+    });
+
 });

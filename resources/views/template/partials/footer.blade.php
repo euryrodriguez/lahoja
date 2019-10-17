@@ -1,10 +1,10 @@
 <footer>
     <div class="col-md-12 text-center">
         <ul id="links-footer">
-            <li><a href="javascript:void(0)"> UASD </a> &nbsp;|</li>
-            <li><a href="javascript:void(0)"> ITSC </a> &nbsp;|</li>
-            <li><a href="javascript:void(0)"> INTEC </a>&nbsp;|</li>
-            <li><a href="javascript:void(0)"> ITLA </a> &nbsp;|</li>
+            <li><a href="{{ URL::to('/')."/universidad/uasd" }}"> UASD </a> &nbsp;|</li>
+            <li><a href="{{ URL::to('/')."/universidad/itsc" }}"> ITSC </a> &nbsp;|</li>
+            <li><a href="{{ URL::to('/')."/universidad/intec" }}"> INTEC </a>&nbsp;|</li>
+            <li><a href="{{ URL::to('/')."/universidad/unapec" }}"> APEC </a> &nbsp;|</li>
         </ul>
         <br>
         <h6>Hecho por <a href="https://euryrodriguez.com/" target="_blank">Eury Peña</a></h6><br>

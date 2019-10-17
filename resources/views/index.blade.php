@@ -8,18 +8,12 @@
                     <div class="card-body">
                         <form class="form" method="POST" action="">
                             <div class="form-group">
-                                <label for="universitySelect" class="font-weight-bold">Universidad:</label>
-                                <select id="universitySelect" class="form-control chosen-select">
-                                    <option value="" disabled selected>--Seleccione universidad</option>
-                                    @if(sizeof($universities)>0)
-                                        @foreach($universities as $university)
-                                            <option value="{{ $university->id }}-{{ $university->acronym }}">
-                                                {{ $university->name }}
-                                                ({{ $university->acronym }})
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
+                                <label for="selectUniversity" class="font-weight-bold">Universidad:</label>
+                                @if(isset($universityName))
+                                    @include('template.partials.selectUniversity',['universityName' => $universityName])
+                                @else
+                                    @include('template.partials.selectUniversity')
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="InputMatricula" class="font-weight-bold">Matrícula:</label>
@@ -27,7 +21,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="datepicker" class="font-weight-bold">Fecha:</label>
-                                <input type="text" readonly class="form-control" id="datepicker" placeholder="DD/MM/YYYY">
+                                <input type="text" readonly class="form-control" id="datepicker"
+                                       placeholder="DD/MM/YYYY">
                             </div>
                             <div class="form-group">
                                 <label for="InputName" class="font-weight-bold">Nombre:</label>
@@ -56,7 +51,7 @@
                             Descargar
                             <i class="fa fa-download" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-info btn-sm mt-2">
+                        <button type="button" class="btn btn-info btn-sm mt-2" id="printBtn">
                             Imprimir
                             <i class="fa fa-print" aria-hidden="true"></i>
                         </button>

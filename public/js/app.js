@@ -41183,7 +41183,7 @@ $(document).ready(
 _asyncToGenerator(
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-  var hojaContent, universidadesArr, selectUniversityId, selectUniversityObj, studentName, InputName, enrollmentSpan, InputMatricula, subjectSpan, InputSubject, teacherSpan, InputTeacher, deadlineSpan, InputDeadline, printBtn, $datepicker;
+  var hojaContent, universidadesArr, selectUniversityId, selectUniversityObj, studentName, InputName, enrollmentSpan, InputMatricula, subjectSpan, InputSubject, teacherSpan, InputTeacher, deadlineSpan, InputDeadline, printBtn, $datepicker, studentNameLabel, enrollmentSpanLabel, subjectSpanLabel, teacherSpanLabel;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
@@ -41195,7 +41195,7 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
 
         case 4:
           universidadesArr = _context.sent;
-          selectUniversityId = '#universitySelect';
+          selectUniversityId = '#selectUniversity';
           selectUniversityObj = $(selectUniversityId);
           studentName = $('.studentName');
           InputName = $('#InputName');
@@ -41207,7 +41207,7 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
           InputTeacher = $('#InputTeacher');
           deadlineSpan = $('.DeadlineSpan');
           InputDeadline = $('#InputDeadline');
-          printBtn = $('#print-btn');
+          printBtn = $('#printBtn');
           $datepicker = $('#datepicker');
           selectUniversityObj.chosen().change(function (evt, params) {
             var selected = params.selected != undefined ? params.selected : "";
@@ -41223,21 +41223,49 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             hojaContent.find('.universityNameSpan').html(nombreUniversidad);
             hojaContent.find('div#isoTipoUniversidad').html('<img src="' + path + '" class="text-align-center" width="100" height="95" alt="logo universidad">');
           });
+          studentNameLabel = studentName.text();
           InputName.on('keyup', function (e) {
             var selector = $(e.target);
-            studentName.html(selector.val());
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              studentName.html(selector.val());
+            } else {
+              studentName.html(studentNameLabel);
+            }
           });
+          enrollmentSpanLabel = enrollmentSpan.text();
           InputMatricula.on('keyup', function (e) {
             var selector = $(e.target);
-            enrollmentSpan.html(selector.val());
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              enrollmentSpan.html(selector.val());
+            } else {
+              enrollmentSpan.html(enrollmentSpanLabel);
+            }
           });
+          subjectSpanLabel = subjectSpan.text();
           InputSubject.on('keyup', function (e) {
             var selector = $(e.target);
-            subjectSpan.html(selector.val());
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              subjectSpan.html(valor);
+            } else {
+              subjectSpan.html(subjectSpanLabel);
+            }
           });
+          teacherSpanLabel = teacherSpan.text();
           InputTeacher.on('keyup', function (e) {
             var selector = $(e.target);
-            teacherSpan.html(selector.val());
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              teacherSpan.html(valor);
+            } else {
+              teacherSpan.html(teacherSpanLabel);
+            }
           });
           $datepicker.datepicker({
             uiLibrary: 'bootstrap4',
@@ -41247,8 +41275,11 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
               deadlineSpan.html(app.dateToSpanish(date));
             }
           });
+          printBtn.on('click', function (e) {
+            app.printElement('hoja-content');
+          });
 
-        case 25:
+        case 30:
         case "end":
           return _context.stop();
       }
@@ -41394,7 +41425,6 @@ function () {
     value: function getUniversidades() {
       var url = this.getBaseUrl() + '/universidades/all';
       return new Promise(function (resolve, reject) {
-        var universities = [];
         $.get(url).done(function (data) {
           var result = JSON.parse(data);
 
@@ -41412,6 +41442,18 @@ function () {
     value: function dateToSpanish(engDate) {
       var dateArr = engDate.split('/');
       return dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
+    }
+  }, {
+    key: "printElement",
+    value: function printElement(elem) {
+      var divToPrint = document.getElementById(elem);
+      var newWin = window.open('', 'Print-Window');
+      newWin.document.open();
+      newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+      newWin.document.close();
+      setTimeout(function () {
+        newWin.close();
+      }, 10);
     }
   }]);
 

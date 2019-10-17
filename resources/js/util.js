@@ -21,11 +21,9 @@ export class Util {
     }
 
     getBaseUrl() {
-
         let url = "";
         const loc = window.location;
         const pathparts = location.pathname.split('/');
-
         if (location.host == 'localhost') {
             url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + '/' + pathparts[1] + '/' + pathparts[2].trim('/') + '/';
         } else {
@@ -64,13 +62,8 @@ export class Util {
     }
 
     getUniversidades() {
-
         const url = this.getBaseUrl() + '/universidades/all';
-
         return new Promise((resolve, reject) => {
-
-            let universities = [];
-
             $.get(url).done(function (data) {
                 let result = JSON.parse(data);
                 if (result.result === 1) {
@@ -88,5 +81,17 @@ export class Util {
         return dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2];
     }
 
+    printElement(elem){
+        var divToPrint=document.getElementById(elem);
 
+        var newWin=window.open('','Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function(){newWin.close();},10);
+    }
 }
