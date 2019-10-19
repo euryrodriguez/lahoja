@@ -9,8 +9,8 @@
                         <form class="form" method="POST" action="">
                             <div class="form-group">
                                 <label for="selectUniversity" class="font-weight-bold">Universidad:</label>
-                                @if(isset($universityName))
-                                    @include('template.partials.selectUniversity',['universityName' => $universityName])
+                                @if(isset($acronym))
+                                    @include('template.partials.selectUniversity',['acronym' => $acronym])
                                 @else
                                     @include('template.partials.selectUniversity')
                                 @endif
@@ -41,7 +41,11 @@
                 </div>
             </div>
             <div class="col-md-6">
-                @include('template.partials.result')
+                @if(isset($imagen) && isset($name) && isset($acronym))
+                    @include('template.partials.result', ['name'=>$name, 'imagen'=>$imagen, 'acronym'=>$acronym])
+                @else
+                    @include('template.partials.result')
+                @endif
             </div>
             <div class="col-md-2">
                 <div class="card mb-3">

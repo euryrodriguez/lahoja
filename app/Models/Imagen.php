@@ -13,7 +13,7 @@ class Imagen extends Model
     protected $fillable = ['filename', 'universityId'];
     protected $hidden = ["created_at", "updated_at", "deleted_at"];
 
-    public function University(){
+    public function universities(){
         return $this->belongsTo('App\Models\Universidad', 'universities.id', 'universityId');
     }
 }

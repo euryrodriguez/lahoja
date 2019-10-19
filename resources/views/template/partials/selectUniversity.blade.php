@@ -1,8 +1,8 @@
 <select id="selectUniversity" class="form-control chosen-select">
     @if(sizeof($universities)>0)
-        @if(isset($universityName))
+        @if(isset($acronym))
             @foreach($universities as $university)
-                @if(strtolower($university->acronym) == $universityName)
+                @if(strtolower($university->acronym) == $acronym)
                     <option value="{{ $university->id }}-{{ $university->acronym }}" selected>
                         {{ $university->name }}
                         ({{ $university->acronym }})
