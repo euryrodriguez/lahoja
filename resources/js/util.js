@@ -82,9 +82,10 @@ export class Util {
     }
 
     printElement(elem){
-        var divToPrint=document.getElementById(elem);
 
-        var newWin=window.open('','Print-Window');
+        const divToPrint=document.getElementById(elem);
+
+        const newWin=window.open('','Print-Window');
 
         newWin.document.open();
 

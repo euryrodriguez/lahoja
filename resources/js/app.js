@@ -44,9 +44,8 @@ $(document).ready(async () => {
         const nombreUniversidad = optionSelectedText.split(' (')[0];
         const siglasUniversidad = optionSelectedText.split(' (')[1].replace(')', '');
 
-        hojaContent.find('.universityNameSpan').html(nombreUniversidad);
-        hojaContent.find('div#isoTipoUniversidad').html('<img src="' + path + '" class="text-align-center" width="100" height="95" alt="logo universidad">');
-
+        hojaContent.find('.universityNameSpan').html(`<strong>${nombreUniversidad}</strong>`);
+        hojaContent.find('div#isoTipoUniversidad').find('img').attr('src',path);
     });
 
     const studentNameLabel = studentName.text();

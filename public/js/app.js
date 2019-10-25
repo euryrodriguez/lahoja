@@ -41220,8 +41220,8 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             var path = app.getBaseUrl() + "universidades/" + folder + "/" + filename;
             var nombreUniversidad = optionSelectedText.split(' (')[0];
             var siglasUniversidad = optionSelectedText.split(' (')[1].replace(')', '');
-            hojaContent.find('.universityNameSpan').html(nombreUniversidad);
-            hojaContent.find('div#isoTipoUniversidad').html('<img src="' + path + '" class="text-align-center" width="100" height="95" alt="logo universidad">');
+            hojaContent.find('.universityNameSpan').html("<strong>".concat(nombreUniversidad, "</strong>"));
+            hojaContent.find('div#isoTipoUniversidad').find('img').attr('src', path);
           });
           studentNameLabel = studentName.text();
           InputName.on('keyup', function (e) {
