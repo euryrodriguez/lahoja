@@ -14,3 +14,8 @@ Route::get('/universidades/all', [
     'uses' => 'HelperController@getImagenesCollection',
     'as' => 'helper.images'
 ]);
+
+Route::post('/getDocument/{output}',[
+    'uses'=> 'IndexController@getDocument',
+    'as'=>'index.getdocument'
+]);

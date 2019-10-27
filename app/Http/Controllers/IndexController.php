@@ -34,4 +34,23 @@ class IndexController extends Controller
         }
 
     }
+
+    public function getDocument($output, Request $request)
+    {
+        $params = $request->all();
+
+        switch ($output) {
+            case 'docx':
+                $view = view('outputs.docx')->with('params', $params)->render();
+                break;
+            case 'print':
+                $view = view('outputs.print')->with('params', $params)->render();
+                break;
+            default:
+                $view = view('outputs.print')->with('params', $params)->render();
+                break;
+        }
+
+        return response()->json(array('view' => $view, 'result' => 1));
+    }
 }

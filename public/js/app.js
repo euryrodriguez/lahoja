@@ -41136,6 +41136,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ "./resources/js/util.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -41155,6 +41156,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -41182,34 +41184,40 @@ $(document).ready(
 /*#__PURE__*/
 _asyncToGenerator(
 /*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-  var hojaContent, universidadesArr, selectUniversityId, selectUniversityObj, studentName, InputName, enrollmentSpan, InputMatricula, subjectSpan, InputSubject, teacherSpan, InputTeacher, deadlineSpan, InputDeadline, printBtn, $datepicker, studentNameLabel, enrollmentSpanLabel, subjectSpanLabel, teacherSpanLabel;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+  var $hojaContent, universidadesArr, selectUniversityId, $selectUniversityObj, $studentName, $InputName, $enrollmentSpan, $InputMatricula, $subjectSpan, $inputSubject, $teacherSpan, $InputTeacher, $deadlineSpan, $InputFacultad, $facultyNameSpan, $InputDeadline, $printBtn, $datepicker, $facultadCheck, $facultadPadre, $rutaImagenHidden, $nombreUniversidadHidden, studentNameLabel, enrollmentSpanLabel, subjectSpanLabel, teacherSpanLabel, facultySpanLabel;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
     while (1) {
-      switch (_context.prev = _context.next) {
+      switch (_context2.prev = _context2.next) {
         case 0:
           app.initPlugins();
-          hojaContent = $('#hoja-content');
-          _context.next = 4;
+          $hojaContent = $('#hoja-content');
+          _context2.next = 4;
           return app.getUniversidades();
 
         case 4:
-          universidadesArr = _context.sent;
+          universidadesArr = _context2.sent;
           selectUniversityId = '#selectUniversity';
-          selectUniversityObj = $(selectUniversityId);
-          studentName = $('.studentName');
-          InputName = $('#InputName');
-          enrollmentSpan = $('.enrollmentSpan');
-          InputMatricula = $('#InputMatricula');
-          subjectSpan = $('.subjectSpan');
-          InputSubject = $('#InputSubject');
-          teacherSpan = $('.teacherSpan');
-          InputTeacher = $('#InputTeacher');
-          deadlineSpan = $('.DeadlineSpan');
-          InputDeadline = $('#InputDeadline');
-          printBtn = $('#printBtn');
+          $selectUniversityObj = $(selectUniversityId);
+          $studentName = $('.studentName');
+          $InputName = $('#InputName');
+          $enrollmentSpan = $('.enrollmentSpan');
+          $InputMatricula = $('#InputMatricula');
+          $subjectSpan = $('.subjectSpan');
+          $inputSubject = $('#InputSubject');
+          $teacherSpan = $('.teacherSpan');
+          $InputTeacher = $('#InputTeacher');
+          $deadlineSpan = $('.DeadlineSpan');
+          $InputFacultad = $('#InputFacultad');
+          $facultyNameSpan = $('.facultyNameSpan');
+          $InputDeadline = $('#InputDeadline');
+          $printBtn = $('.btn-print');
           $datepicker = $('#datepicker');
-          selectUniversityObj.chosen().change(function (evt, params) {
+          $facultadCheck = $('#facultadCheck');
+          $facultadPadre = $('#facultadPadre');
+          $rutaImagenHidden = $('#rutaImagenHidden');
+          $nombreUniversidadHidden = $('#nombreUniversidadHidden');
+          $selectUniversityObj.chosen().change(function (evt, params) {
             var selected = params.selected != undefined ? params.selected : "";
             var values = selected.split('-');
             var index = values[0];
@@ -41220,51 +41228,53 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             var path = app.getBaseUrl() + "universidades/" + folder + "/" + filename;
             var nombreUniversidad = optionSelectedText.split(' (')[0];
             var siglasUniversidad = optionSelectedText.split(' (')[1].replace(')', '');
-            hojaContent.find('.universityNameSpan').html("<strong>".concat(nombreUniversidad, "</strong>"));
-            hojaContent.find('div#isoTipoUniversidad').find('img').attr('src', path);
+            $hojaContent.find('.universityNameSpan').html("<strong>".concat(nombreUniversidad, "</strong>"));
+            $hojaContent.find('div#isoTipoUniversidad').find('img').attr('src', path);
+            $rutaImagenHidden.val(path);
+            $nombreUniversidadHidden.val(nombreUniversidad);
           });
-          studentNameLabel = studentName.text();
-          InputName.on('keyup', function (e) {
+          studentNameLabel = $studentName.text();
+          $InputName.on('keyup', function (e) {
             var selector = $(e.target);
             var valor = selector.val();
 
             if (valor.trim().length > 0) {
-              studentName.html(selector.val());
+              $studentName.html(selector.val());
             } else {
-              studentName.html(studentNameLabel);
+              $studentName.html(studentNameLabel);
             }
           });
-          enrollmentSpanLabel = enrollmentSpan.text();
-          InputMatricula.on('keyup', function (e) {
+          enrollmentSpanLabel = $enrollmentSpan.text();
+          $InputMatricula.on('keyup', function (e) {
             var selector = $(e.target);
             var valor = selector.val();
 
             if (valor.trim().length > 0) {
-              enrollmentSpan.html(selector.val());
+              $enrollmentSpan.html(selector.val());
             } else {
-              enrollmentSpan.html(enrollmentSpanLabel);
+              $enrollmentSpan.html(enrollmentSpanLabel);
             }
           });
-          subjectSpanLabel = subjectSpan.text();
-          InputSubject.on('keyup', function (e) {
+          subjectSpanLabel = $subjectSpan.text();
+          $inputSubject.on('keyup', function (e) {
             var selector = $(e.target);
             var valor = selector.val();
 
             if (valor.trim().length > 0) {
-              subjectSpan.html(valor);
+              $subjectSpan.html(valor);
             } else {
-              subjectSpan.html(subjectSpanLabel);
+              $subjectSpan.html(subjectSpanLabel);
             }
           });
-          teacherSpanLabel = teacherSpan.text();
-          InputTeacher.on('keyup', function (e) {
+          teacherSpanLabel = $teacherSpan.text();
+          $InputTeacher.on('keyup', function (e) {
             var selector = $(e.target);
             var valor = selector.val();
 
             if (valor.trim().length > 0) {
-              teacherSpan.html(valor);
+              $teacherSpan.html(valor);
             } else {
-              teacherSpan.html(teacherSpanLabel);
+              $teacherSpan.html(teacherSpanLabel);
             }
           });
           $datepicker.datepicker({
@@ -41272,19 +41282,91 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             change: function change(e) {
               var selector = $(this),
                   date = selector.val();
-              deadlineSpan.html(app.dateToSpanish(date));
+              $deadlineSpan.html(app.dateToSpanish(date));
             }
           });
-          printBtn.on('click', function (e) {
-            app.printElement('hoja-content');
-          });
+          $facultadCheck.on('change', function (e) {
+            var $selector = $(e.target);
+            app.toggleClass($facultyNameSpan, "d-none");
+            app.toggleClass($facultadPadre, "d-none");
 
-        case 30:
+            if ($selector.is(':checked')) {
+              $InputFacultad.attr('required', 'required');
+            } else {
+              $InputFacultad.removeAttr("required");
+              app.removeClass($InputFacultad, "is-invalid");
+            }
+          });
+          facultySpanLabel = $facultyNameSpan.text();
+          $InputFacultad.on('keyup', function (e) {
+            var selector = $(e.target);
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              $facultyNameSpan.html(valor);
+            } else {
+              $facultyNameSpan.html(facultySpanLabel);
+            }
+          });
+          $printBtn.on('click',
+          /*#__PURE__*/
+          function () {
+            var _ref2 = _asyncToGenerator(
+            /*#__PURE__*/
+            _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+              var selector, output, form, url, data, selected, selectParent, html;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                  switch (_context.prev = _context.next) {
+                    case 0:
+                      selector = $(e.target);
+                      output = selector.data('action');
+                      form = $('#mainForm');
+                      url = app.getBaseUrl() + "getDocument/" + output;
+                      data = form.serialize();
+                      selected = $(selectUniversityId).chosen().find("option:selected").text(); //Universidad seleccionada
+
+                      selectParent = $(selectUniversityId).parent('div');
+                      _context.next = 9;
+                      return app.getDocument(url, data);
+
+                    case 9:
+                      html = _context.sent;
+
+                      if (selected.indexOf('--') !== -1) {
+                        _bootstrap__WEBPACK_IMPORTED_MODULE_2__["toastr"].error("Seleccione la universidad", "Universidad Obligatoria");
+                        selectParent.addClass('border border-danger');
+                      } else {
+                        app.removeClass(selectParent, "border border-danger");
+
+                        if (app.validateForm(form)) {
+                          if (output == "print") {
+                            app.printElement(html);
+                          }
+                        }
+                      }
+
+                      console.log(data);
+
+                    case 12:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee);
+            }));
+
+            return function (_x) {
+              return _ref2.apply(this, arguments);
+            };
+          }());
+
+        case 39:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
     }
-  }, _callee);
+  }, _callee2);
 })));
 
 /***/ }),
@@ -41350,6 +41432,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Util", function() { return Util; });
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -41409,6 +41493,23 @@ function () {
       });
     }
   }, {
+    key: "getDocument",
+    value: function getDocument(url, data) {
+      var app = this;
+      return new Promise(function (resolve, reject) {
+        $.post(url, data).done(function (data) {
+          var result = JSON.parse(JSON.stringify(data));
+
+          if (result.result === 1) {
+            resolve(result.view);
+          } else {
+            swal("Operación Fallida", " ".concat(data.message, " algo sali\xF3 mal, por favor intentelo mas tarde."), 'error');
+            resolve("");
+          }
+        });
+      });
+    }
+  }, {
     key: "initPlugins",
     value: function initPlugins() {
       var selectChosen = '.chosen-select';
@@ -41445,15 +41546,180 @@ function () {
     }
   }, {
     key: "printElement",
-    value: function printElement(elem) {
-      var divToPrint = document.getElementById(elem);
+    value: function printElement(html) {
       var newWin = window.open('', 'Print-Window');
       newWin.document.open();
-      newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+      newWin.document.write('<html><body onload="window.print()">' + html + '</body></html>');
       newWin.document.close();
       setTimeout(function () {
         newWin.close();
       }, 10);
+    }
+  }, {
+    key: "toggleClass",
+    value: function toggleClass(object, className) {
+      if (object.hasClass(className)) {
+        object.removeClass(className);
+      } else {
+        object.addClass(className);
+      }
+    }
+  }, {
+    key: "removeClass",
+    value: function removeClass(object, className) {
+      if (object.hasClass(className)) {
+        object.removeClass(className);
+      }
+    }
+  }, {
+    key: "validateForm",
+    value: function validateForm(form) {
+      var error = 0,
+          app = this; //iterate through inputs that have the form-control class
+
+      form.find('.form-control').each(function (index, element) {
+        var current = $(element),
+            min = current.is("[min]") ? current.attr('min') : '',
+            //minimum of characters allowed
+        max = current.is("[max]") ? current.attr('max') : '',
+            //maximum of characters allowed
+        parent = current.parent('div').closest('div.form-group'),
+            //parent
+        label = parent.find('label').text();
+        label = label.trim().length === 0 ? current.closest('div.row').children("div:first").find('label').text() : label;
+        label = label.trim().length === 0 ? current.parents('div').closest('label').text() : label;
+        parent = parent.length == 0 ? current.parent() : parent; //check if the input is required
+
+        if (current.is("[required]")) {
+          if (current.is('input')) {
+            if (!$.trim(current.val()) || current.val() == 0 || current.val() == null) {
+              app.showErrors(element, parent, "".concat(label, " no puede ser nulo."), 'Faltan Campos');
+              error++;
+              return false;
+            } else {
+              app.hideErrors(current);
+            }
+          } else if (current.is(':checkbox')) {
+            if (!current.is(':checked')) {
+              app.showErrors(element, parent, "Debe chequear la opci\xF3n ".concat(label), 'Faltan Campos');
+              error++;
+              return false;
+            }
+          } else {
+            //validate select and textarea
+            if ($.trim(current.val()).length == 0 || current.val() == -1 || current.val() == null) {
+              app.showErrors(element, parent, "".concat(label, " no puede ser nulo."), 'Faltan Campos');
+              error++;
+              return false;
+            } else {
+              app.hideErrors(current);
+            }
+          }
+
+          if (current.hasClass('numeric')) {
+            var strNumber = current.val();
+
+            if (!app.strIsNumber(strNumber)) {
+              app.showErrors(element, parent, "".concat(label, " solo admite n\xFAmeros."), 'Formato incorrecto');
+              error++;
+              return false;
+            }
+          } else {
+            app.hideErrors(current);
+          }
+        }
+
+        if (current.hasClass('numeric')) {
+          if (current.val().length > 0) {
+            var _strNumber = current.val();
+
+            if (!app.strIsNumber(_strNumber)) {
+              app.showErrors(element, parent, "".concat(label, " solo admite n\xFAmeros."), 'Formato incorrecto');
+              error++;
+              return false;
+            }
+          }
+        }
+
+        if (current.hasClass('url')) {
+          if (current.val().length > 0) {
+            var url = current.val();
+
+            if (!app.validateUrl(url)) {
+              app.showErrors(element, parent, "".concat(label, " no es un enlace v\xE1lido."), 'Formato incorrecto');
+              error++;
+              return false;
+            }
+          }
+        }
+
+        if (min !== '') {
+          if (app.strIsNumber(min)) {
+            if ($.trim(current.val()).length < min) {
+              app.showErrors(element, parent, "".concat(label, " no cumple con la cantidad de car\xE1cteres requerida."), "M\xEDnimo no alcanzado (".concat(min, ")"));
+              error++;
+              return false;
+            } else {
+              app.hideErrors(current);
+            }
+          }
+        }
+
+        if (max !== '') {
+          if (app.strIsNumber(max)) {
+            if ($.trim(current.val()).length > max) {
+              app.showErrors(element, parent, "".concat(label, " supera el m\xE1ximo de car\xE1cteres permitidos."), "M\xE1ximo superado (".concat(max, ")"));
+              error++;
+              return false;
+            } else {
+              app.hideErrors(current);
+            }
+          }
+        }
+      }).promise().done(function () {
+        form.find('input[type="checkbox"]').each(function (index, checkbox) {
+          var current = $(checkbox),
+              parent = current.parent('div').closest('div.form-group'),
+              //parent
+          label = parent.find('label').text();
+
+          if (current.is('[required]')) {
+            if (!current.is(':checked')) {
+              app.showErrors(checkbox, parent, "Debe chequear la opci\xF3n ".concat(label), 'Faltan Campos');
+              error++;
+              return false;
+            }
+          }
+        });
+      });
+      return error <= 0;
+    }
+  }, {
+    key: "showErrors",
+    value: function showErrors(selector, parent, message, title) {
+      if (!$(selector).hasClass('is-invalid')) $(selector).addClass('is-invalid');
+      $(selector).focus();
+
+      if (_typeof(_bootstrap__WEBPACK_IMPORTED_MODULE_0__["toastr"]) == 'object') {
+        _bootstrap__WEBPACK_IMPORTED_MODULE_0__["toastr"].error(message, title);
+      } else if (typeof swal == 'function') {
+        swal(title, message, 'error');
+      } else {
+        alert(message);
+      }
+    }
+  }, {
+    key: "hideErrors",
+    value: function hideErrors(parent) {
+      if (parent.hasClass('is-invalid')) {
+        parent.removeClass('is-invalid');
+      }
+    }
+  }, {
+    key: "strIsNumber",
+    value: function strIsNumber(str) {
+      var pattern = /^-{0,1}\d*\.{0,1}\d+$/;
+      return pattern.test(str); // returns a boolean
     }
   }]);
 
