@@ -41185,17 +41185,18 @@ $(document).ready(
 _asyncToGenerator(
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-  var $hojaContent, universidadesArr, selectUniversityId, $selectUniversityObj, $studentName, $InputName, $enrollmentSpan, $InputMatricula, $subjectSpan, $inputSubject, $teacherSpan, $InputTeacher, $deadlineSpan, $InputFacultad, $facultyNameSpan, $InputDeadline, $printBtn, $datepicker, $facultadCheck, $facultadPadre, $rutaImagenHidden, $nombreUniversidadHidden, studentNameLabel, enrollmentSpanLabel, subjectSpanLabel, teacherSpanLabel, facultySpanLabel;
+  var $nombreUniversidadHidden, $hojaContent, universidadesArr, selectUniversityId, $selectUniversityObj, $studentName, $InputName, $enrollmentSpan, $InputMatricula, $ToPicSpan, $inputToPic, $teacherSpan, $InputTeacher, $deadlineSpan, $InputFacultad, $facultyNameSpan, $InputDeadline, $printBtn, $datepicker, $facultadCheck, $facultadPadre, $rutaImagenHidden, $InputColor, $InputSeccion, $seccionSpan, $InputSubject, $subjectSpan, studentNameLabel, enrollmentSpanLabel, ToPicSpanLabel, teacherSpanLabel, facultySpanLabel, seccionSpanLabel, subjectSpanLabel;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
           app.initPlugins();
+          $nombreUniversidadHidden = $('#nombreUniversidadHidden');
           $hojaContent = $('#hoja-content');
-          _context2.next = 4;
+          _context2.next = 5;
           return app.getUniversidades();
 
-        case 4:
+        case 5:
           universidadesArr = _context2.sent;
           selectUniversityId = '#selectUniversity';
           $selectUniversityObj = $(selectUniversityId);
@@ -41203,8 +41204,8 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
           $InputName = $('#InputName');
           $enrollmentSpan = $('.enrollmentSpan');
           $InputMatricula = $('#InputMatricula');
-          $subjectSpan = $('.subjectSpan');
-          $inputSubject = $('#InputSubject');
+          $ToPicSpan = $('.toPicSpan');
+          $inputToPic = $('#InputToPic');
           $teacherSpan = $('.teacherSpan');
           $InputTeacher = $('#InputTeacher');
           $deadlineSpan = $('.DeadlineSpan');
@@ -41216,7 +41217,11 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
           $facultadCheck = $('#facultadCheck');
           $facultadPadre = $('#facultadPadre');
           $rutaImagenHidden = $('#rutaImagenHidden');
-          $nombreUniversidadHidden = $('#nombreUniversidadHidden');
+          $InputColor = $('#InputColor');
+          $InputSeccion = $('#InputSeccion');
+          $seccionSpan = $('.seccionSpan');
+          $InputSubject = $('#InputSubject');
+          $subjectSpan = $('.subjectSpan');
           $selectUniversityObj.chosen().change(function (evt, params) {
             var selected = params.selected != undefined ? params.selected : "";
             var values = selected.split('-');
@@ -41255,15 +41260,15 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
               $enrollmentSpan.html(enrollmentSpanLabel);
             }
           });
-          subjectSpanLabel = $subjectSpan.text();
-          $inputSubject.on('keyup', function (e) {
+          ToPicSpanLabel = $ToPicSpan.text();
+          $inputToPic.on('keyup', function (e) {
             var selector = $(e.target);
             var valor = selector.val();
 
             if (valor.trim().length > 0) {
-              $subjectSpan.html(valor);
+              $ToPicSpan.html(valor);
             } else {
-              $subjectSpan.html(subjectSpanLabel);
+              $ToPicSpan.html(ToPicSpanLabel);
             }
           });
           teacherSpanLabel = $teacherSpan.text();
@@ -41308,6 +41313,32 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
               $facultyNameSpan.html(facultySpanLabel);
             }
           });
+          seccionSpanLabel = $seccionSpan.text();
+          $InputSeccion.on('keyup', function (e) {
+            var selector = $(e.target);
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              $seccionSpan.html(valor);
+            } else {
+              $seccionSpan.html(seccionSpanLabel);
+            }
+          });
+          subjectSpanLabel = $subjectSpan.text();
+          $InputSubject.on('keyup', function (e) {
+            var selector = $(e.target);
+            var valor = selector.val();
+
+            if (valor.trim().length > 0) {
+              $subjectSpan.html(valor);
+            } else {
+              $subjectSpan.html(subjectSpanLabel);
+            }
+          });
+          $InputColor.on('change', function (e) {
+            var $selector = $(e.target);
+            console.log($selector.val());
+          });
           $printBtn.on('click',
           /*#__PURE__*/
           function () {
@@ -41346,9 +41377,7 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
                         }
                       }
 
-                      console.log(data);
-
-                    case 12:
+                    case 11:
                     case "end":
                       return _context.stop();
                   }
@@ -41361,7 +41390,7 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             };
           }());
 
-        case 39:
+        case 49:
         case "end":
           return _context2.stop();
       }
@@ -41547,13 +41576,24 @@ function () {
   }, {
     key: "printElement",
     value: function printElement(html) {
-      var newWin = window.open('', 'Print-Window');
-      newWin.document.open();
-      newWin.document.write('<html><body onload="window.print()">' + html + '</body></html>');
-      newWin.document.close();
-      setTimeout(function () {
-        newWin.close();
-      }, 10);
+      var browser = this.getCurrentBrowser();
+
+      if (browser == 'Firefox') {
+        var win = window.open('', '', 'width=800,height=600,left=0,top=0,toolbar=0,scrollbars=0,status=0');
+        win.document.write(html);
+        win.document.close();
+        win.focus();
+        win.print();
+        win.close();
+      } else {
+        var newWin = window.open('', 'Print-Window');
+        newWin.document.open();
+        newWin.document.write('<html><body onload="window.print()">' + html + '</body></html>');
+        newWin.document.close();
+        setTimeout(function () {
+          newWin.close();
+        }, 10);
+      }
     }
   }, {
     key: "toggleClass",
@@ -41720,6 +41760,23 @@ function () {
     value: function strIsNumber(str) {
       var pattern = /^-{0,1}\d*\.{0,1}\d+$/;
       return pattern.test(str); // returns a boolean
+    }
+  }, {
+    key: "getCurrentBrowser",
+    value: function getCurrentBrowser() {
+      if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+        return 'Opera';
+      } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+        return 'Chrome';
+      } else if (navigator.userAgent.indexOf("Safari") != -1) {
+        return 'Safari';
+      } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+        return 'Firefox';
+      } else if (navigator.userAgent.indexOf("MSIE") != -1 || !!document.documentMode == true) {
+        return 'IE';
+      } else {
+        return 'Desconocido';
+      }
     }
   }]);
 

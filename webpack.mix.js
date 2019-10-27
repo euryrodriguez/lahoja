@@ -24,12 +24,13 @@ mix.js('resources/js/app.js', 'public/js/app.js')
 mix.styles(
     [
         'node_modules/bootswatch/dist/flatly/bootstrap.min.css',
-        'node_modules/ionicons/dist/css/ionicons.min.css',
-        'node_modules/chosen-js/chosen.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
+        'node_modules/ionicons/dist/css/ionicons.min.css',
         'node_modules/toastr/build/toastr.min.css',
+        'node_modules/chosen-js/chosen.css',
         'node_modules/gijgo/css/gijgo.css',
-        'resources/sass/app.scss'
+        'resources/css/custom.css',
+        'resources/sass/app.scss',
     ],
     'public/css/app.css'
 );

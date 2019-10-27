@@ -15,6 +15,7 @@ $(document).ready(async () => {
 
     app.initPlugins();
 
+    const $nombreUniversidadHidden = $('#nombreUniversidadHidden');
     const $hojaContent = $('#hoja-content');
     const universidadesArr = await app.getUniversidades();
     const selectUniversityId = '#selectUniversity';
@@ -23,8 +24,8 @@ $(document).ready(async () => {
     const $InputName = $('#InputName');
     const $enrollmentSpan = $('.enrollmentSpan');
     const $InputMatricula = $('#InputMatricula');
-    const $subjectSpan = $('.subjectSpan');
-    const $inputSubject = $('#InputSubject');
+    const $ToPicSpan = $('.toPicSpan');
+    const $inputToPic = $('#InputToPic');
     const $teacherSpan = $('.teacherSpan');
     const $InputTeacher = $('#InputTeacher');
     const $deadlineSpan = $('.DeadlineSpan');
@@ -36,7 +37,11 @@ $(document).ready(async () => {
     const $facultadCheck = $('#facultadCheck');
     const $facultadPadre = $('#facultadPadre');
     const $rutaImagenHidden = $('#rutaImagenHidden');
-    const $nombreUniversidadHidden = $('#nombreUniversidadHidden');
+    const $InputColor = $('#InputColor');
+    const $InputSeccion = $('#InputSeccion');
+    const $seccionSpan = $('.seccionSpan');
+    const $InputSubject = $('#InputSubject');
+    const $subjectSpan = $('.subjectSpan');
 
     $selectUniversityObj.chosen().change((evt, params) => {
         const selected = (params.selected != undefined) ? params.selected : "";
@@ -81,15 +86,15 @@ $(document).ready(async () => {
         }
     });
 
-    const subjectSpanLabel = $subjectSpan.text();
+    const ToPicSpanLabel = $ToPicSpan.text();
 
-    $inputSubject.on('keyup', (e) => {
+    $inputToPic.on('keyup', (e) => {
         const selector = $(e.target);
         const valor = selector.val();
         if (valor.trim().length > 0) {
-            $subjectSpan.html(valor);
+            $ToPicSpan.html(valor);
         } else {
-            $subjectSpan.html(subjectSpanLabel);
+            $ToPicSpan.html(ToPicSpanLabel);
         }
     });
 
@@ -118,9 +123,9 @@ $(document).ready(async () => {
         const $selector = $(e.target);
         app.toggleClass($facultyNameSpan, "d-none");
         app.toggleClass($facultadPadre, "d-none");
-        if($selector.is(':checked')){
-            $InputFacultad.attr('required','required');
-        }else{
+        if ($selector.is(':checked')) {
+            $InputFacultad.attr('required', 'required');
+        } else {
             $InputFacultad.removeAttr("required");
             app.removeClass($InputFacultad, "is-invalid")
         }
@@ -136,6 +141,35 @@ $(document).ready(async () => {
         } else {
             $facultyNameSpan.html(facultySpanLabel);
         }
+    });
+
+    const seccionSpanLabel = $seccionSpan.text();
+
+    $InputSeccion.on('keyup', (e) => {
+        const selector = $(e.target);
+        const valor = selector.val();
+        if (valor.trim().length > 0) {
+            $seccionSpan.html(valor);
+        } else {
+            $seccionSpan.html(seccionSpanLabel);
+        }
+    });
+
+    const subjectSpanLabel = $subjectSpan.text();
+
+    $InputSubject.on('keyup', (e) => {
+        const selector = $(e.target);
+        const valor = selector.val();
+        if (valor.trim().length > 0) {
+            $subjectSpan.html(valor);
+        } else {
+            $subjectSpan.html(subjectSpanLabel);
+        }
+    });
+
+    $InputColor.on('change', (e) => {
+        let $selector = $(e.target);
+        console.log($selector.val());
     });
 
     $printBtn.on('click', async (e) => {
@@ -159,7 +193,5 @@ $(document).ready(async () => {
                 }
             }
         }
-        console.log(data);
     });
-
 });

@@ -4,13 +4,36 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card mb-3" id="card-info">
-                    <div class="card-header"><span class="font-weight-bold">Información Requerida</span></div>
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6 m-0">
+                                <span class="font-weight-bold">Información Requerida</span>
+                            </div>
+                            <div class="col-md-6 text-right omega">
+                                <ul class="links-display-inline">
+                                    <li>
+                                        <button type="button" class="btn btn-info btn-sm btn-print" data-action="docx">
+                                            Descargar <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-danger btn-sm btn-print"
+                                                data-action="print">
+                                            Imprimir
+                                            <i class="fa fa-print" aria-hidden="true"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <form class="form" method="POST" action="" id="mainForm">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group p-1">
                                         <label for="selectUniversity" class="font-weight-bold">Universidad:</label>
+                                        <label class="label-mandatory">*</label>
                                         @if(isset($acronym))
                                             @include('template.partials.selectUniversity',['acronym' => $acronym])
                                         @else
@@ -20,9 +43,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group p-1">
-                                        <label for="facultadCheck" class="font-weight-bold">Facultad:</label>
+                                        <label for="facultadCheck" class="font-weight-bol">Facultad:</label>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" name="facultadCheck" class="custom-control-input" id="facultadCheck">
+                                            <input type="checkbox" name="facultadCheck" class="custom-control-input"
+                                                   id="facultadCheck">
                                             <label class="custom-control-label" for="facultadCheck">Incluir
                                                 Facultad</label>
                                         </div>
@@ -31,39 +55,82 @@
                                 <div class="col-md-12 d-none" id="facultadPadre">
                                     <div class="form-group">
                                         <label for="InputFacultad" class="font-weight-bold">Facultad:</label>
-                                        <input type="text" class="form-control" name="InputFacultad" id="InputFacultad" placeholder="Facultad">
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm" name="InputFacultad"
+                                               id="InputFacultad"
+                                               placeholder="Facultad">
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="InputSubject" class="font-weight-bold">Tema:</label>
-                                        <input type="text" class="form-control" required name="InputSubject" id="InputSubject" placeholder="Tema">
+                                        <label for="InputSubject" class="font-weight-bold">Asignatura:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm" required
+                                               name="InputSubject"
+                                               id="InputSubject" placeholder="Asignatura">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputToPic" class="font-weight-bold">Tema:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm" required
+                                               name="InputToPic"
+                                               id="InputToPic" placeholder="Tema">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputName" class="font-weight-bold">Nombre:</label>
-                                        <input type="text" class="form-control" required id="InputName" placeholder="Nombre">
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm" required id="InputName"
+                                               name="InputName"
+                                               placeholder="Nombre">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputMatricula" class="font-weight-bold">Matrícula:</label>
-                                        <input type="text" class="form-control" required id="InputMatricula" name="InputMatricula"
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm" required
+                                               id="InputMatricula"
+                                               name="InputMatricula"
                                                placeholder="Matrícula">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="InputSeccion" class="font-weight-bold">Sección:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm" required
+                                               id="InputSeccion"
+                                               name="InputSeccion"
+                                               placeholder="Sección">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="InputColor" class="font-weight-bold">Color de letras:</label>
+                                        <input type="color" class="form-control form-control-sm" value="#000000" required
+                                               id="InputColor"
+                                               name="InputColor" placeholder="Sección">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="InputTeacher" class="font-weight-bold">Nombre Facilitador:</label>
-                                        <input type="text" class="form-control" required id="InputTeacher" name="InputTeacher"
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control" required id="InputTeacher"
+                                               name="InputTeacher"
                                                placeholder="Facilitador">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="datepicker" class="font-weight-bold">Fecha:</label>
-                                        <input type="text" readonly class="form-control" required id="datepicker" name="deadline"
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" readonly class="form-control" required id="datepicker"
+                                               name="deadline"
                                                placeholder="DD/MM/YYYY">
                                     </div>
                                 </div>
@@ -73,26 +140,7 @@
                         </form>
                     </div>
                     <div class="card-footer">
-                        <ul class="links-display-inline">
-                            <li>
-                                <button type="button" class="btn btn-success btn-sm mt-2 btn-print" data-action="docx">
-                                    Descargar
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-info btn-sm mt-2 btn-print" data-action="print">
-                                    Imprimir
-                                    <i class="fa fa-print" aria-hidden="true"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-danger btn-sm mt-2">
-                                    Limpiar
-                                    <i class="fa fa-backward" aria-hidden="true"></i>
-                                </button>
-                            </li>
-                        </ul>
+
                     </div>
                 </div>
             </div>

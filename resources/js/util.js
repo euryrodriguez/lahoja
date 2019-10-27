@@ -7,17 +7,14 @@ import {
 export class Util {
 
     constructor() {
-
         window.jQuery = jquery;
         window.$ = jquery;
         $.fn.init();
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': this.getToken()
             }
         });
-
     }
 
     getBaseUrl() {
@@ -31,7 +28,6 @@ export class Util {
         }
         return url;
     }
-
 
     getToken() {
         return $('meta[name="csrf-token"]').attr('content');
@@ -97,17 +93,31 @@ export class Util {
     }
 
     printElement(html) {
-        const newWin = window.open('', 'Print-Window');
 
-        newWin.document.open();
+        const browser = this.getCurrentBrowser();
 
-        newWin.document.write('<html><body onload="window.print()">' + html + '</body></html>');
+        if (browser == 'Firefox') {
+            var win = window.open('', '', 'width=800,height=600,left=0,top=0,toolbar=0,scrollbars=0,status=0');
+            win.document.write(html);
+            win.document.close();
+            win.focus();
+            win.print();
+            win.close();
+        } else {
 
-        newWin.document.close();
+            const newWin = window.open('', 'Print-Window');
 
-        setTimeout(function () {
-            newWin.close();
-        }, 10);
+            newWin.document.open();
+
+            newWin.document.write('<html><body onload="window.print()">' + html + '</body></html>');
+
+            newWin.document.close();
+
+            setTimeout(function () {
+                newWin.close();
+            }, 10);
+
+        }
     }
 
     toggleClass(object, className) {
@@ -268,4 +278,19 @@ export class Util {
         return (pattern.test(str));  // returns a boolean
     };
 
+    getCurrentBrowser() {
+        if ((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1) {
+            return 'Opera';
+        } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+            return 'Chrome';
+        } else if (navigator.userAgent.indexOf("Safari") != -1) {
+            return 'Safari';
+        } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+            return 'Firefox';
+        } else if ((navigator.userAgent.indexOf("MSIE") != -1) || (!!document.documentMode == true)) {
+            return 'IE';
+        } else {
+            return 'Desconocido';
+        }
+    }
 }

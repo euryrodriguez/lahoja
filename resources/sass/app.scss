@@ -29,12 +29,27 @@ footer {
     border-top: #2196F3;
 }
 
-.links-display-inline {
+ .links-display-inline {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .links-display-inline li {
     display: inline-block;
     margin-right: 10px;
+}
+.alpha{
+    padding-left: 0 !important;
+}
+.omega{
+    padding-right: 0 !important;
+}
+.cursor-pointer{
+    cursor: pointer !important;
+}
+.label-mandatory{
+    color: red;
+    position: relative;
+    top:-2px;
 }
