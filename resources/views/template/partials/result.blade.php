@@ -17,11 +17,11 @@
         @php $name = (isset($name)) ? $name: "Nombre Universidad";@endphp
         <p></p>
         <h3 style="text-align: center;font-size: 18px;" class="universityNameSpan">
-            <strong>Universidad Autónoma de Santo Domingo</strong>
+            <strong>Seleccione universidad</strong>
         </h3>
         <p></p>
         <p align="center">
-            <span class="text-center facultyNameSpan">
+            <span class="text-center facultyNameSpan d-none">
                 <strong>Facultad de Ciencias Qu&iacute;micas</strong>
             </span>
         </p>

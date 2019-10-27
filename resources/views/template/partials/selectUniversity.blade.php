@@ -1,4 +1,4 @@
-<select id="selectUniversity" class="form-control chosen-select">
+<select id="selectUniversity" class="form-control chosen-select" name="selectUniversity">
     @if(sizeof($universities)>0)
         @if(isset($acronym))
             @foreach($universities as $university)
@@ -15,7 +15,7 @@
                 @endif
             @endforeach
         @else
-            <option value="" disabled selected>--Seleccione universidad</option>
+            <option value="-1" disabled selected>--Seleccione universidad</option>
             @foreach($universities as $university)
                 <option value="{{ $university->id }}-{{ $university->acronym }}">
                     {{ $university->name }}
