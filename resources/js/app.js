@@ -62,53 +62,28 @@ $(document).ready(async () => {
         $nombreUniversidadHidden.val(nombreUniversidad);
     });
 
-    const studentNameLabel = $studentName.text();
-
-    $InputName.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $studentName.html(selector.val());
-        } else {
-            $studentName.html(studentNameLabel);
-        }
-    });
-
-    const enrollmentSpanLabel = $enrollmentSpan.text();
-
-    $InputMatricula.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $enrollmentSpan.html(selector.val());
-        } else {
-            $enrollmentSpan.html(enrollmentSpanLabel);
-        }
-    });
-
-    const ToPicSpanLabel = $ToPicSpan.text();
-
-    $inputToPic.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $ToPicSpan.html(valor);
-        } else {
-            $ToPicSpan.html(ToPicSpanLabel);
-        }
-    });
-
-    const teacherSpanLabel = $teacherSpan.text();
-
-    $InputTeacher.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $teacherSpan.html(valor);
-        } else {
-            $teacherSpan.html(teacherSpanLabel);
-        }
-    });
+    /*************************************** Campo Nombre ********************************************/
+    const studentNameDefaultText = $studentName.text();
+    app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
+    /************************************** Campo Matricula ******************************************/
+    const enrollmentSpanDefaultText = $enrollmentSpan.text();
+    app.escribirEnHoja($InputMatricula, $enrollmentSpan, enrollmentSpanDefaultText);
+    /************************************** Campo Tema **********************************************************/
+    const ToPicSpanDefaultText = $ToPicSpan.text();
+    app.escribirEnHoja($inputToPic, $ToPicSpan, ToPicSpanDefaultText);
+    /************************************** Campo Profesor **********************************************************/
+    const teacherSpanDefaultText = $teacherSpan.text();
+    app.escribirEnHoja($InputTeacher, $teacherSpan, teacherSpanDefaultText);
+    /************************************** Campo Facultad *********************************************************/
+    const facultySpanDefaultText = $facultyNameSpan.text();
+    app.escribirEnHoja($InputFacultad, $facultyNameSpan, facultySpanDefaultText);
+    /************************************** Campo Sección *********************************************************/
+    const seccionSpanDefaultText = $seccionSpan.text();
+    app.escribirEnHoja($InputSeccion, $seccionSpan, seccionSpanDefaultText);
+    /************************************** Campo Asignatura *********************************************************/
+    const subjectSpanDefaultText = $subjectSpan.text();
+    app.escribirEnHoja($InputSubject, $subjectSpan, subjectSpanDefaultText);
+    /***************************************************************************************************/
 
     $datepicker.datepicker({
         uiLibrary: 'bootstrap4',
@@ -128,42 +103,6 @@ $(document).ready(async () => {
         } else {
             $InputFacultad.removeAttr("required");
             app.removeClass($InputFacultad, "is-invalid")
-        }
-    });
-
-    const facultySpanLabel = $facultyNameSpan.text();
-
-    $InputFacultad.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $facultyNameSpan.html(valor);
-        } else {
-            $facultyNameSpan.html(facultySpanLabel);
-        }
-    });
-
-    const seccionSpanLabel = $seccionSpan.text();
-
-    $InputSeccion.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $seccionSpan.html(valor);
-        } else {
-            $seccionSpan.html(seccionSpanLabel);
-        }
-    });
-
-    const subjectSpanLabel = $subjectSpan.text();
-
-    $InputSubject.on('keyup', (e) => {
-        const selector = $(e.target);
-        const valor = selector.val();
-        if (valor.trim().length > 0) {
-            $subjectSpan.html(valor);
-        } else {
-            $subjectSpan.html(subjectSpanLabel);
         }
     });
 

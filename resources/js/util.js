@@ -120,6 +120,18 @@ export class Util {
         }
     }
 
+    escribirEnHoja($field, $target, defaultText){
+        $field.on('keyup', (e) => {
+            const selector = $(e.target);
+            const valor = selector.val();
+            if (valor.trim().length > 0) {
+                $target.html(valor);
+            } else {
+                $target.html(defaultText);
+            }
+        });
+    }
+
     toggleClass(object, className) {
         if (object.hasClass(className)) {
             object.removeClass(className);

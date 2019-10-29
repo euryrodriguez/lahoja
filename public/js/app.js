@@ -41185,7 +41185,7 @@ $(document).ready(
 _asyncToGenerator(
 /*#__PURE__*/
 _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-  var $nombreUniversidadHidden, $hojaContent, universidadesArr, selectUniversityId, $selectUniversityObj, $studentName, $InputName, $enrollmentSpan, $InputMatricula, $ToPicSpan, $inputToPic, $teacherSpan, $InputTeacher, $deadlineSpan, $InputFacultad, $facultyNameSpan, $InputDeadline, $printBtn, $datepicker, $facultadCheck, $facultadPadre, $rutaImagenHidden, $InputColor, $InputSeccion, $seccionSpan, $InputSubject, $subjectSpan, studentNameLabel, enrollmentSpanLabel, ToPicSpanLabel, teacherSpanLabel, facultySpanLabel, seccionSpanLabel, subjectSpanLabel;
+  var $nombreUniversidadHidden, $hojaContent, universidadesArr, selectUniversityId, $selectUniversityObj, $studentName, $InputName, $enrollmentSpan, $InputMatricula, $ToPicSpan, $inputToPic, $teacherSpan, $InputTeacher, $deadlineSpan, $InputFacultad, $facultyNameSpan, $InputDeadline, $printBtn, $datepicker, $facultadCheck, $facultadPadre, $rutaImagenHidden, $InputColor, $InputSeccion, $seccionSpan, $InputSubject, $subjectSpan, studentNameDefaultText, enrollmentSpanDefaultText, ToPicSpanDefaultText, teacherSpanDefaultText, facultySpanDefaultText, seccionSpanDefaultText, subjectSpanDefaultText;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -41238,50 +41238,36 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             $rutaImagenHidden.val(path);
             $nombreUniversidadHidden.val(nombreUniversidad);
           });
-          studentNameLabel = $studentName.text();
-          $InputName.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
+          /*************************************** Campo Nombre ********************************************/
 
-            if (valor.trim().length > 0) {
-              $studentName.html(selector.val());
-            } else {
-              $studentName.html(studentNameLabel);
-            }
-          });
-          enrollmentSpanLabel = $enrollmentSpan.text();
-          $InputMatricula.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
+          studentNameDefaultText = $studentName.text();
+          app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
+          /************************************** Campo Matricula ******************************************/
 
-            if (valor.trim().length > 0) {
-              $enrollmentSpan.html(selector.val());
-            } else {
-              $enrollmentSpan.html(enrollmentSpanLabel);
-            }
-          });
-          ToPicSpanLabel = $ToPicSpan.text();
-          $inputToPic.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
+          enrollmentSpanDefaultText = $enrollmentSpan.text();
+          app.escribirEnHoja($InputMatricula, $enrollmentSpan, enrollmentSpanDefaultText);
+          /************************************** Campo Tema **********************************************************/
 
-            if (valor.trim().length > 0) {
-              $ToPicSpan.html(valor);
-            } else {
-              $ToPicSpan.html(ToPicSpanLabel);
-            }
-          });
-          teacherSpanLabel = $teacherSpan.text();
-          $InputTeacher.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
+          ToPicSpanDefaultText = $ToPicSpan.text();
+          app.escribirEnHoja($inputToPic, $ToPicSpan, ToPicSpanDefaultText);
+          /************************************** Campo Profesor **********************************************************/
 
-            if (valor.trim().length > 0) {
-              $teacherSpan.html(valor);
-            } else {
-              $teacherSpan.html(teacherSpanLabel);
-            }
-          });
+          teacherSpanDefaultText = $teacherSpan.text();
+          app.escribirEnHoja($InputTeacher, $teacherSpan, teacherSpanDefaultText);
+          /************************************** Campo Facultad *********************************************************/
+
+          facultySpanDefaultText = $facultyNameSpan.text();
+          app.escribirEnHoja($InputFacultad, $facultyNameSpan, facultySpanDefaultText);
+          /************************************** Campo Sección *********************************************************/
+
+          seccionSpanDefaultText = $seccionSpan.text();
+          app.escribirEnHoja($InputSeccion, $seccionSpan, seccionSpanDefaultText);
+          /************************************** Campo Asignatura *********************************************************/
+
+          subjectSpanDefaultText = $subjectSpan.text();
+          app.escribirEnHoja($InputSubject, $subjectSpan, subjectSpanDefaultText);
+          /***************************************************************************************************/
+
           $datepicker.datepicker({
             uiLibrary: 'bootstrap4',
             change: function change(e) {
@@ -41300,39 +41286,6 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function 
             } else {
               $InputFacultad.removeAttr("required");
               app.removeClass($InputFacultad, "is-invalid");
-            }
-          });
-          facultySpanLabel = $facultyNameSpan.text();
-          $InputFacultad.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
-
-            if (valor.trim().length > 0) {
-              $facultyNameSpan.html(valor);
-            } else {
-              $facultyNameSpan.html(facultySpanLabel);
-            }
-          });
-          seccionSpanLabel = $seccionSpan.text();
-          $InputSeccion.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
-
-            if (valor.trim().length > 0) {
-              $seccionSpan.html(valor);
-            } else {
-              $seccionSpan.html(seccionSpanLabel);
-            }
-          });
-          subjectSpanLabel = $subjectSpan.text();
-          $InputSubject.on('keyup', function (e) {
-            var selector = $(e.target);
-            var valor = selector.val();
-
-            if (valor.trim().length > 0) {
-              $subjectSpan.html(valor);
-            } else {
-              $subjectSpan.html(subjectSpanLabel);
             }
           });
           $InputColor.on('change', function (e) {
@@ -41594,6 +41547,20 @@ function () {
           newWin.close();
         }, 10);
       }
+    }
+  }, {
+    key: "escribirEnHoja",
+    value: function escribirEnHoja($field, $target, defaultText) {
+      $field.on('keyup', function (e) {
+        var selector = $(e.target);
+        var valor = selector.val();
+
+        if (valor.trim().length > 0) {
+          $target.html(valor);
+        } else {
+          $target.html(defaultText);
+        }
+      });
     }
   }, {
     key: "toggleClass",
