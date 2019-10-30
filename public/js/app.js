@@ -41180,176 +41180,142 @@ function (_Util) {
 }(_util__WEBPACK_IMPORTED_MODULE_1__["Util"]);
 
 var app = new App();
-$(document).ready(
-/*#__PURE__*/
-_asyncToGenerator(
-/*#__PURE__*/
-_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-  var $nombreUniversidadHidden, $hojaContent, universidadesArr, selectUniversityId, $selectUniversityObj, $studentName, $InputName, $enrollmentSpan, $InputMatricula, $ToPicSpan, $inputToPic, $teacherSpan, $InputTeacher, $deadlineSpan, $InputFacultad, $facultyNameSpan, $InputDeadline, $printBtn, $datepicker, $facultadCheck, $facultadPadre, $rutaImagenHidden, $InputColor, $InputSeccion, $seccionSpan, $InputSubject, $subjectSpan, studentNameDefaultText, enrollmentSpanDefaultText, ToPicSpanDefaultText, teacherSpanDefaultText, facultySpanDefaultText, seccionSpanDefaultText, subjectSpanDefaultText;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          app.initPlugins();
-          $nombreUniversidadHidden = $('#nombreUniversidadHidden');
-          $hojaContent = $('#hoja-content');
-          _context2.next = 5;
-          return app.getUniversidades();
+$(document).ready(function () {
+  app.initPlugins();
+  var $hojaContent = $('#hoja-content');
+  var selectUniversityId = '#selectUniversity';
+  var $selectUniversityObj = $(selectUniversityId);
+  var $studentName = $('.studentName');
+  var $InputName = $('#InputName');
+  var $enrollmentSpan = $('.enrollmentSpan');
+  var $InputMatricula = $('#InputMatricula');
+  var $toPicSpan = $('.toPicSpan');
+  var $inputToPic = $('#InputToPic');
+  var $teacherSpan = $('.teacherSpan');
+  var $InputTeacher = $('#InputTeacher');
+  var $deadlineSpan = $('.DeadlineSpan');
+  var $InputFacultad = $('#InputFacultad');
+  var $facultyNameSpan = $('.facultyNameSpan');
+  var $printBtn = $('.btn-print');
+  var $datepicker = $('#datepicker');
+  var $facultadCheck = $('#facultadCheck');
+  var $facultadPadre = $('#facultadPadre');
+  var $InputColor = $('#InputColor');
+  var $InputSeccion = $('#InputSeccion');
+  var $seccionSpan = $('.seccionSpan');
+  var $InputSubject = $('#InputSubject');
+  var $subjectSpan = $('.subjectSpan');
+  $selectUniversityObj.chosen().change(function (evt, params) {
+    var selected = params.selected != undefined ? params.selected : "";
+    var optionSelected = $(selectUniversityId + ' option:selected').text().trim();
+    var siglasUniversidad = optionSelected.split(' (')[1].replace(')', '');
+    window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
+  });
+  /*************************************** Campo Nombre ********************************************/
 
-        case 5:
-          universidadesArr = _context2.sent;
-          selectUniversityId = '#selectUniversity';
-          $selectUniversityObj = $(selectUniversityId);
-          $studentName = $('.studentName');
-          $InputName = $('#InputName');
-          $enrollmentSpan = $('.enrollmentSpan');
-          $InputMatricula = $('#InputMatricula');
-          $ToPicSpan = $('.toPicSpan');
-          $inputToPic = $('#InputToPic');
-          $teacherSpan = $('.teacherSpan');
-          $InputTeacher = $('#InputTeacher');
-          $deadlineSpan = $('.DeadlineSpan');
-          $InputFacultad = $('#InputFacultad');
-          $facultyNameSpan = $('.facultyNameSpan');
-          $InputDeadline = $('#InputDeadline');
-          $printBtn = $('.btn-print');
-          $datepicker = $('#datepicker');
-          $facultadCheck = $('#facultadCheck');
-          $facultadPadre = $('#facultadPadre');
-          $rutaImagenHidden = $('#rutaImagenHidden');
-          $InputColor = $('#InputColor');
-          $InputSeccion = $('#InputSeccion');
-          $seccionSpan = $('.seccionSpan');
-          $InputSubject = $('#InputSubject');
-          $subjectSpan = $('.subjectSpan');
-          $selectUniversityObj.chosen().change(function (evt, params) {
-            var selected = params.selected != undefined ? params.selected : "";
-            var values = selected.split('-');
-            var index = values[0];
-            var folder = values[1];
-            var indice = parseInt(index) - 1;
-            var optionSelectedText = $(selectUniversityId + ' option:selected').text().trim();
-            var filename = universidadesArr[indice] != "undefined" ? universidadesArr[indice].filename : '';
-            var path = app.getBaseUrl() + "universidades/" + folder + "/" + filename;
-            var nombreUniversidad = optionSelectedText.split(' (')[0];
-            var siglasUniversidad = optionSelectedText.split(' (')[1].replace(')', '');
-            $hojaContent.find('.universityNameSpan').html("<strong>".concat(nombreUniversidad, "</strong>"));
-            $hojaContent.find('div#isoTipoUniversidad').find('img').attr('src', path);
-            $rutaImagenHidden.val(path);
-            $nombreUniversidadHidden.val(nombreUniversidad);
-          });
-          /*************************************** Campo Nombre ********************************************/
+  var studentNameDefaultText = $studentName.text(); //Texto por defecto
 
-          studentNameDefaultText = $studentName.text();
-          app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
-          /************************************** Campo Matricula ******************************************/
+  app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
+  /************************************** Campo Matricula ******************************************/
 
-          enrollmentSpanDefaultText = $enrollmentSpan.text();
-          app.escribirEnHoja($InputMatricula, $enrollmentSpan, enrollmentSpanDefaultText);
-          /************************************** Campo Tema **********************************************************/
+  var enrollmentSpanDefaultText = $enrollmentSpan.text();
+  app.escribirEnHoja($InputMatricula, $enrollmentSpan, enrollmentSpanDefaultText);
+  /************************************** Campo Tema **********************************************************/
 
-          ToPicSpanDefaultText = $ToPicSpan.text();
-          app.escribirEnHoja($inputToPic, $ToPicSpan, ToPicSpanDefaultText);
-          /************************************** Campo Profesor **********************************************************/
+  var ToPicSpanDefaultText = $toPicSpan.text();
+  app.escribirEnHoja($inputToPic, $toPicSpan, ToPicSpanDefaultText);
+  /************************************** Campo Profesor **********************************************************/
 
-          teacherSpanDefaultText = $teacherSpan.text();
-          app.escribirEnHoja($InputTeacher, $teacherSpan, teacherSpanDefaultText);
-          /************************************** Campo Facultad *********************************************************/
+  var teacherSpanDefaultText = $teacherSpan.text();
+  app.escribirEnHoja($InputTeacher, $teacherSpan, teacherSpanDefaultText);
+  /************************************** Campo Facultad *********************************************************/
 
-          facultySpanDefaultText = $facultyNameSpan.text();
-          app.escribirEnHoja($InputFacultad, $facultyNameSpan, facultySpanDefaultText);
-          /************************************** Campo Sección *********************************************************/
+  var facultySpanDefaultText = $facultyNameSpan.text();
+  app.escribirEnHoja($InputFacultad, $facultyNameSpan, facultySpanDefaultText);
+  /************************************** Campo Sección *********************************************************/
 
-          seccionSpanDefaultText = $seccionSpan.text();
-          app.escribirEnHoja($InputSeccion, $seccionSpan, seccionSpanDefaultText);
-          /************************************** Campo Asignatura *********************************************************/
+  var seccionSpanDefaultText = $seccionSpan.text();
+  app.escribirEnHoja($InputSeccion, $seccionSpan, seccionSpanDefaultText);
+  /************************************** Campo Asignatura *********************************************************/
 
-          subjectSpanDefaultText = $subjectSpan.text();
-          app.escribirEnHoja($InputSubject, $subjectSpan, subjectSpanDefaultText);
-          /***************************************************************************************************/
+  var subjectSpanDefaultText = $subjectSpan.text();
+  app.escribirEnHoja($InputSubject, $subjectSpan, subjectSpanDefaultText);
+  /***************************************************************************************************/
 
-          $datepicker.datepicker({
-            uiLibrary: 'bootstrap4',
-            change: function change(e) {
-              var selector = $(this),
-                  date = selector.val();
-              $deadlineSpan.html(app.dateToSpanish(date));
-            }
-          });
-          $facultadCheck.on('change', function (e) {
-            var $selector = $(e.target);
-            app.toggleClass($facultyNameSpan, "d-none");
-            app.toggleClass($facultadPadre, "d-none");
+  $datepicker.datepicker({
+    uiLibrary: 'bootstrap4',
+    change: function change(e) {
+      var selector = $(this),
+          date = selector.val();
+      $deadlineSpan.html(app.dateToSpanish(date));
+    }
+  });
+  $facultadCheck.on('change', function (e) {
+    var $selector = $(e.target);
+    app.toggleClass($facultyNameSpan, "d-none");
+    app.toggleClass($facultadPadre, "d-none");
 
-            if ($selector.is(':checked')) {
-              $InputFacultad.attr('required', 'required');
-            } else {
-              $InputFacultad.removeAttr("required");
-              app.removeClass($InputFacultad, "is-invalid");
-            }
-          });
-          $InputColor.on('change', function (e) {
-            var $selector = $(e.target);
-            console.log($selector.val());
-          });
-          $printBtn.on('click',
-          /*#__PURE__*/
-          function () {
-            var _ref2 = _asyncToGenerator(
-            /*#__PURE__*/
-            _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
-              var selector, output, form, url, data, selected, selectParent, html;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-                while (1) {
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      selector = $(e.target);
-                      output = selector.data('action');
-                      form = $('#mainForm');
-                      url = app.getBaseUrl() + "getDocument/" + output;
-                      data = form.serialize();
-                      selected = $(selectUniversityId).chosen().find("option:selected").text(); //Universidad seleccionada
+    if ($selector.is(':checked')) {
+      $InputFacultad.attr('required', 'required');
+    } else {
+      $InputFacultad.removeAttr("required");
+      app.removeClass($InputFacultad, "is-invalid");
+    }
+  });
+  $InputColor.on('change', function (e) {
+    var $selector = $(e.target);
+    console.log($selector.val());
+  });
+  $printBtn.on('click',
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+      var selector, form, data, output, url, html, selectParent, selected;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              selector = $(e.target);
+              form = $('#mainForm');
+              data = form.serialize();
+              output = selector.data('action');
+              url = app.getBaseUrl() + "getDocument/" + output;
+              _context.next = 7;
+              return app.getDocument(url, data);
 
-                      selectParent = $(selectUniversityId).parent('div');
-                      _context.next = 9;
-                      return app.getDocument(url, data);
+            case 7:
+              html = _context.sent;
+              selectParent = $(selectUniversityId).parent('div');
+              selected = $(selectUniversityId).chosen().find("option:selected").text(); //Universidad seleccionada
 
-                    case 9:
-                      html = _context.sent;
+              if (selected.indexOf('--') !== -1) {
+                _bootstrap__WEBPACK_IMPORTED_MODULE_2__["toastr"].error("Seleccione la universidad", "Universidad Obligatoria");
+                selectParent.addClass('border border-danger');
+              } else {
+                app.removeClass(selectParent, "border border-danger");
 
-                      if (selected.indexOf('--') !== -1) {
-                        _bootstrap__WEBPACK_IMPORTED_MODULE_2__["toastr"].error("Seleccione la universidad", "Universidad Obligatoria");
-                        selectParent.addClass('border border-danger');
-                      } else {
-                        app.removeClass(selectParent, "border border-danger");
-
-                        if (app.validateForm(form)) {
-                          if (output == "print") {
-                            app.printElement(html);
-                          }
-                        }
-                      }
-
-                    case 11:
-                    case "end":
-                      return _context.stop();
+                if (app.validateForm(form)) {
+                  if (output == "print") {
+                    app.printElement(html);
                   }
                 }
-              }, _callee);
-            }));
+              }
 
-            return function (_x) {
-              return _ref2.apply(this, arguments);
-            };
-          }());
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
 
-        case 49:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  }, _callee2);
-})));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+});
 
 /***/ }),
 
@@ -41437,6 +41403,7 @@ function () {
         'X-CSRF-TOKEN': this.getToken()
       }
     });
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   _createClass(Util, [{

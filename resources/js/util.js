@@ -15,6 +15,7 @@ export class Util {
                 'X-CSRF-TOKEN': this.getToken()
             }
         });
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     getBaseUrl() {
@@ -97,7 +98,7 @@ export class Util {
         const browser = this.getCurrentBrowser();
 
         if (browser == 'Firefox') {
-            var win = window.open('', '', 'width=800,height=600,left=0,top=0,toolbar=0,scrollbars=0,status=0');
+            const win = window.open('', '', 'width=800,height=600,left=0,top=0,toolbar=0,scrollbars=0,status=0');
             win.document.write(html);
             win.document.close();
             win.focus();

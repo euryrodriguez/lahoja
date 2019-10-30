@@ -1,18 +1,19 @@
 <div id="hoja-content" class="hoja-shadow container">
-    <span class="font-weight-bold;" style="float: left;margin-top: 5px;font-size: large;">
-        <i title="Vista Previa" class="fa fa-eye"></i>
+    <span class="font-weight-bold;" style="float: left;margin-top: 5px;font-size: large;cursor:pointer;">
+        <i title="Vista Previa" data-toggle="tooltip" data-placement="top"  class="fa fa-eye"></i>
     </span>
     <form action="" id="hoja-content-form" class="">
         <div id="isoTipoUniversidad" class="text-center mt-3">
+            @php $img = (isset($imagen)) ? asset('universidades').'/'.strtoupper($acronym).'/'.$imagen: asset('universidades/UASD/Escudo_UASD_1.jpg'); @endphp
             @if(isset($imagen) && isset($name) && isset($acronym))
                 <span style="display:block;text-align: center;">
-                    <img src="{{ asset('universidades') }}/{{ strtoupper($acronym) }}/{{ $imagen }}"
+                    <img src="{{ $img }}"
                          alt="logo universidad"
                          width="100" height="100" align="bottom" border="0"/>
                 </span>
             @else
                 <span style="display: block;text-align: center; ">
-                    <img src="{{ asset('universidades/UASD/Escudo_UASD_1.jpg') }}" alt="logo universidad"
+                    <img src="{{ $img }}" alt="logo universidad"
                          width="100" height="100" name="1 Imagen" align="bottom" border="0"/>
                </span>
             @endif
