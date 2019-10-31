@@ -38,12 +38,13 @@ $(document).ready(() => {
     const $seccionSpan = $('.seccionSpan');
     const $InputSubject = $('#InputSubject');
     const $subjectSpan = $('.subjectSpan');
+    const $labelColor = $('.labelColor');
 
     $selectUniversityObj.chosen().change((evt, params) => {
         const selected = (params.selected != undefined) ? params.selected : "";
         const optionSelected = $(selectUniversityId + ' option:selected').text().trim();
         const siglasUniversidad = optionSelected.split(' (')[1].replace(')', '');
-        window.location = app.getBaseUrl()+"universidad/"+siglasUniversidad.toLocaleLowerCase();
+        window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
     });
 
     /*************************************** Campo Nombre ********************************************/
@@ -90,9 +91,12 @@ $(document).ready(() => {
         }
     });
 
-    $InputColor.on('change', (e) => {
-        let $selector = $(e.target);
-        console.log($selector.val());
+    $InputColor.on('input', (e) => {
+        const $selector = $(e.target);
+        const color = $selector.val();
+        $labelColor.each((index, element) => {
+            $(element).css({'color': color});
+        });
     });
 
     $printBtn.on('click', async (e) => {

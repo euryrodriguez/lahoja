@@ -41205,6 +41205,7 @@ $(document).ready(function () {
   var $seccionSpan = $('.seccionSpan');
   var $InputSubject = $('#InputSubject');
   var $subjectSpan = $('.subjectSpan');
+  var $labelColor = $('.labelColor');
   $selectUniversityObj.chosen().change(function (evt, params) {
     var selected = params.selected != undefined ? params.selected : "";
     var optionSelected = $(selectUniversityId + ' option:selected').text().trim();
@@ -41262,9 +41263,14 @@ $(document).ready(function () {
       app.removeClass($InputFacultad, "is-invalid");
     }
   });
-  $InputColor.on('change', function (e) {
+  $InputColor.on('input', function (e) {
     var $selector = $(e.target);
-    console.log($selector.val());
+    var color = $selector.val();
+    $labelColor.each(function (index, element) {
+      $(element).css({
+        'color': color
+      });
+    });
   });
   $printBtn.on('click',
   /*#__PURE__*/
