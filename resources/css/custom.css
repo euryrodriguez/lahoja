@@ -1,0 +1,27 @@
+#isoTipoUniversidad {
+    display: block;
+    width: 235px;
+    height: auto;
+    margin: auto;
+}
+
+.universityNameSpan {
+    text-align: center;
+    font-size: 25px;
+    margin-top: -5px;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
+
+.background-logo{
+    opacity: 0.1;
+    height: 500px;
+    position: absolute;
+    top:0;
+    left: 100px;
+    width: calc(80% - 100px);
+    z-index: -1;
+}

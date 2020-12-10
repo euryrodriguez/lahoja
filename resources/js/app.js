@@ -15,44 +15,87 @@ $(document).ready(() => {
 
     app.initPlugins();
 
-    const $hojaContent = $('#hoja-content');
-    const selectUniversityId = '#selectUniversity';
-    const $selectUniversityObj = $(selectUniversityId);
-    const $studentName = $('.studentName');
-    const $InputName = $('#InputName');
-    const $enrollmentSpan = $('.enrollmentSpan');
-    const $InputMatricula = $('#InputMatricula');
-    const $toPicSpan = $('.toPicSpan');
-    const $inputToPic = $('#InputToPic');
-    const $teacherSpan = $('.teacherSpan');
-    const $InputTeacher = $('#InputTeacher');
-    const $deadlineSpan = $('.DeadlineSpan');
-    const $InputFacultad = $('#InputFacultad');
-    const $facultyNameSpan = $('.facultyNameSpan');
-    const $printBtn = $('.btn-print');
-    const $datepicker = $('#datepicker');
-    const $facultadCheck = $('#facultadCheck');
-    const $facultadPadre = $('#facultadPadre');
-    const $InputColor = $('#InputColor');
-    const $InputSeccion = $('#InputSeccion');
-    const $seccionSpan = $('.seccionSpan');
-    const $InputSubject = $('#InputSubject');
-    const $subjectSpan = $('.subjectSpan');
-    const $labelColor = $('.labelColor');
+    const $hojaContent = $('#hoja-content'),
+        selectUniversityId = '#selectUniversity',
+        $selectUniversityObj = $(selectUniversityId),
+        $studentName = $('.studentName'),
+        $InputName = $('#InputName'),
+        $enrollmentSpan = $('.enrollmentSpan'),
+        $InputMatricula = $('#InputMatricula'),
+        $universityNameSpan = $('.universityNameSpan'),
+        $toPicSpan = $('.toPicSpan'),
+        $inputToPic = $('#InputToPic'),
+        $teacherSpan = $('.teacherSpan'),
+        $InputTeacher = $('#InputTeacher'),
+        $deadlineSpan = $('.DeadlineSpan'),
+        $InputFacultad = $('#InputFacultad'),
+        $facultyNameSpan = $('.facultyNameSpan'),
+        $printBtn = $('.btn-print'),
+        $datepicker = $('#datepicker'),
+        $facultadCheck = $('#facultadCheck'),
+        $facultadPadre = $('#facultadPadre'),
+        $InputColor = $('#InputColor'),
+        $InputSeccion = $('#InputSeccion'),
+        $seccionSpan = $('.seccionSpan'),
+        $InputSubject = $('#InputSubject'),
+        $subjectSpan = $('.subjectSpan'),
+        $labelColor = $('.labelColor'),
+        $divNombreUniversidad = $('#divNombreUniversidad'),
+        $divLogoUniversidadFile = $('#divLogoUniversidadFile'),
+        $InputUniversityName = $('#InputUniversityName'),
+        $logoFile = $('#logoFile'),
+        $isoTipoUniversidad = $('#isoTipoUniversidad'),
+        $logoIMG = $isoTipoUniversidad.find('span').find('img'),
+        urlDefaultLogoIcon = app.getBaseUrl() + 'img/default-logo-icon.png',
+        $nombreUniversidadHidden = $('#nombreUniversidadHidden'),
+        $rutaImagenHidden = $('#rutaImagenHidden'),
+        $inputWidthLogoUniversidad = $('#inputWidth'),
+        $inputHeightLogoUniversidad = $('#inputHeight'),
+        $inputHiddenMatriculas = $('#inputHiddenMatriculas');
 
     $selectUniversityObj.chosen().change((evt, params) => {
         const selected = (params.selected != undefined) ? params.selected : "";
         const optionSelected = $(selectUniversityId + ' option:selected').text().trim();
         const siglasUniversidad = optionSelected.split(' (')[1].replace(')', '');
-        window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
+        if (optionSelected.toString().toLocaleLowerCase().includes('otra')) {
+            app.removeClass($divNombreUniversidad, 'd-none');
+            app.removeClass($divLogoUniversidadFile, 'd-none');
+            $logoIMG.attr('src', urlDefaultLogoIcon);
+            $InputUniversityName.attr('required', 'required');
+            $universityNameSpan.html('Nombre Universidad');
+        } else {
+            window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
+        }
     });
 
     /*************************************** Campo Nombre ********************************************/
     const studentNameDefaultText = $studentName.text(); //Texto por defecto
     app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
-    /************************************** Campo Matricula ******************************************/
+    /************************************** Campo Matrícula ******************************************/
+
     const enrollmentSpanDefaultText = $enrollmentSpan.text();
-    app.escribirEnHoja($InputMatricula, $enrollmentSpan, enrollmentSpanDefaultText);
+
+    $InputMatricula.on('keyup', function (e) {
+        let matriculasHTMLConSaltosDeLinea = '';
+        const currentValue = $(this).val();
+        const arrayMatriculasSeparadasPorComas = currentValue.split(',');
+        const sizeArreglo = arrayMatriculasSeparadasPorComas.length;
+        if (sizeArreglo > 1) {
+            for (let i of arrayMatriculasSeparadasPorComas) {
+                matriculasHTMLConSaltosDeLinea += i + '<br />';
+            }
+        } else {
+            matriculasHTMLConSaltosDeLinea = currentValue;
+        }
+        if (currentValue.trim().length > 0) {
+            $enrollmentSpan.html(matriculasHTMLConSaltosDeLinea);
+            $inputHiddenMatriculas.val(matriculasHTMLConSaltosDeLinea);
+        } else {
+            $enrollmentSpan.html(enrollmentSpanDefaultText);
+            $inputHiddenMatriculas.val(enrollmentSpanDefaultText);
+        }
+    });
+
     /************************************** Campo Tema **********************************************************/
     const ToPicSpanDefaultText = $toPicSpan.text();
     app.escribirEnHoja($inputToPic, $toPicSpan, ToPicSpanDefaultText);
@@ -121,4 +164,31 @@ $(document).ready(() => {
             }
         }
     });
+
+    $InputUniversityName.on('keyup', function (e) {
+        const $selector = $(this);
+        let currentValue = $selector.val();
+        $nombreUniversidadHidden.val(currentValue);
+        app.escribirEnHoja($selector, $universityNameSpan, "Nombre Universidad");
+    });
+
+    $logoFile.on('change', async function (e) {
+        const $selector = $(this);
+        let imgBase64 = await app.getBase64($selector[0].files[0]);
+        $logoIMG.attr('src', imgBase64);
+        $rutaImagenHidden.val(imgBase64);
+    });
+
+    $inputWidthLogoUniversidad.on('change', function (e) {
+        const $selector = $(this);
+        const width = $selector.val();
+        $logoIMG.attr('width', width);
+    });
+
+    $inputHeightLogoUniversidad.on('change', function (e) {
+        const $selector = $(this);
+        const height = $selector.val();
+        $logoIMG.attr('height', height);
+    });
+
 });

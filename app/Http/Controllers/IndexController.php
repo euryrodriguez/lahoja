@@ -21,13 +21,20 @@ class IndexController extends Controller
             if (null != $university) {
 
                 $id = $university->id;
+
                 $imagen = Imagen::where('universityId', '=', $id)->first();
 
-                return view('index')
-                    ->with('acronym', $acronym)
-                    ->with('universities', $all)
-                    ->with('name', $university->name)
-                    ->with('imagen', $imagen->filename);
+                if(null != $imagen){
+                    return view('index')
+                        ->with('acronym', $acronym)
+                        ->with('universities', $all)
+                        ->with('name', $university->name)
+                        ->with('imagen', $imagen->filename)
+                        ->with('width', $imagen->width)
+                        ->with('height', $imagen->height);
+                }else{
+                    return redirect()->route('index.welcome');
+                }
             }
 
             return redirect()->route('index.welcome');

@@ -3218,7 +3218,33 @@ ul.gj-list-md li.disabled > [data-role="wrapper"] > [data-role="expander"] {
     top: 0px;
     font-size: 24px;
 }
+#isoTipoUniversidad {
+    display: block;
+    width: 235px;
+    height: auto;
+    margin: auto;
+}
 
+.universityNameSpan {
+    text-align: center;
+    font-size: 25px;
+    margin-top: -5px;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
+
+.background-logo{
+    opacity: 0.1;
+    height: 500px;
+    position: absolute;
+    top:0;
+    left: 100px;
+    width: calc(80% - 100px);
+    z-index: -1;
+}
 #top-bar {
     box-shadow: 1px 1px 1px #3292a6;
     opacity: 0.9;
@@ -3237,10 +3263,11 @@ ul.gj-list-md li.disabled > [data-role="wrapper"] > [data-role="expander"] {
     border-color: #2196F3;
     height: 500px;
     overflow-y: scroll;
+    resize: vertical;
 }
 
 #card-info {
-    height: 500px;
+    height: 600px;
     overflow-y: scroll;
 }
 

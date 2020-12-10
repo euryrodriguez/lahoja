@@ -1,4 +1,4 @@
-<footer>
+<footer class="pb-1">
     <div class="col-md-12 text-center">
         <ul class="links-display-inline">
             <li class="mt-4"><a href="{{ URL::to('/')."/universidad/uasd" }}"> UASD </a> &nbsp;|</li>

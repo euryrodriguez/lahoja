@@ -10,7 +10,7 @@ class Universidad extends Model
     use SoftDeletes;
 
     protected $table = 'universities';
-    protected $fillable = ['name', 'acronym'];
+    protected $fillable = ['name', 'acronym', 'width', 'height'];
 
     public function images()
     {

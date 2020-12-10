@@ -14,7 +14,7 @@ class CreateUniversitiesTable extends Migration
             Schema::create($this->table, function (Blueprint $table) {
                 $table->bigIncrements('id')->unsigned();
                 $table->string('name', 175);
-                $table->string('acronym', 6);
+                $table->string('acronym', 10);
                 $table->timestamps();
                 $table->softDeletes();
             });

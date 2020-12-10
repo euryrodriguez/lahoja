@@ -11,15 +11,16 @@
                             </div>
                             <div class="col-md-6 text-right omega">
                                 <ul class="links-display-inline">
-                                    <li>
+                                    <!--<li>
                                         <button type="button" class="btn btn-info btn-sm btn-print"
                                                 data-toggle="tooltip" data-placement="left" title="Haz click para descargar el documento."
                                                 data-action="docx">
                                             Descargar <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
-                                    </li>
+                                    </li>-->
                                     <li>
-                                        <button type="button" class="btn btn-danger btn-sm btn-print" data-action="print">
+                                        <button type="button" class="btn btn-danger btn-sm btn-print"
+                                                data-action="print">
                                             Imprimir
                                             <i class="fa fa-print" aria-hidden="true"></i>
                                         </button>
@@ -64,6 +65,27 @@
                                                placeholder="Facultad">
                                     </div>
                                 </div>
+                                <div id="divNombreUniversidad" class="col-md-6 d-none">
+                                    <div class="form-group">
+                                        <label for="InputUniversityName" class="font-weight-bold">Nombre de la
+                                            universidad:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="text" class="form-control form-control-sm"
+                                               data-toggle="tooltip" data-placement="top"
+                                               title="Nombre de la universidad"
+                                               name="InputUniversityName"
+                                               id="InputUniversityName" placeholder="Asignatura">
+                                    </div>
+                                </div>
+                                <div id="divLogoUniversidadFile" class="col-md-6 d-none">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="logoFile">Logo</label>
+                                            <label class="label-mandatory">*</label>
+                                            <input type="file" class="form-control-file" id="logoFile" required>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="InputSubject" class="font-weight-bold">Asignatura:</label>
@@ -100,10 +122,11 @@
                                         <label for="InputMatricula" class="font-weight-bold">Matrícula:</label>
                                         <label class="label-mandatory">*</label>
                                         <input type="text" class="form-control form-control-sm" required
-                                               data-toggle="tooltip" data-placement="top" title="Matrícula"
+                                               data-toggle="tooltip" data-placement="top" title="Puede añadir mas matrículas separandolas por comas."
                                                id="InputMatricula"
                                                name="InputMatricula"
                                                placeholder="Matrícula">
+                                        <input type="hidden" name="inputHiddenMatriculas" id="inputHiddenMatriculas">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -146,6 +169,30 @@
                                                required id="datepicker"
                                                name="deadline"
                                                placeholder="DD/MM/YYYY">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputWidth" class="font-weight-bold">Anchura Logo:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="number" class="form-control form-control-sm" required
+                                               data-toggle="tooltip" data-placement="top" title="Anchura Logo"
+                                               id="inputWidth"
+                                               name="inputWidth"
+                                               placeholder="Anchura Logo"
+                                               value="{{ (isset($width))? $width: '100' }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputHeight" class="font-weight-bold">Altura Logo:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="number" class="form-control form-control-sm" required
+                                               data-toggle="tooltip" data-placement="top" title="Altura Logo"
+                                               id="inputHeight"
+                                               name="inputHeight"
+                                               placeholder="Altura Logo"
+                                               value="{{ (isset($height))? $height: '100' }}">
                                     </div>
                                 </div>
                             </div>

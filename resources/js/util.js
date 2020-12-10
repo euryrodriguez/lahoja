@@ -19,15 +19,7 @@ export class Util {
     }
 
     getBaseUrl() {
-        let url = "";
-        const loc = window.location;
-        const pathparts = location.pathname.split('/');
-        if (location.host == 'localhost') {
-            url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + '/' + pathparts[1] + '/' + pathparts[2].trim('/') + '/';
-        } else {
-            url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/";
-        }
-        return url;
+        return $('meta[name="public-path"]').attr('content');
     }
 
     getToken() {
@@ -121,12 +113,12 @@ export class Util {
         }
     }
 
-    escribirEnHoja($field, $target, defaultText){
+    escribirEnHoja($field, $target, defaultText) {
         $field.on('keyup', (e) => {
-            const selector = $(e.target);
-            const valor = selector.val();
-            if (valor.trim().length > 0) {
-                $target.html(valor);
+            const $selector = $(e.target);
+            const value = $selector.val();
+            if (value.trim().length > 0) {
+                $target.html(value);
             } else {
                 $target.html(defaultText);
             }
@@ -305,5 +297,14 @@ export class Util {
         } else {
             return 'Desconocido';
         }
+    }
+
+    getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
     }
 }

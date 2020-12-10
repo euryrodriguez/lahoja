@@ -6,10 +6,8 @@
         <div id="isoTipoUniversidad" class="text-center mt-3">
             @php $img = (isset($imagen)) ? asset('universidades').'/'.strtoupper($acronym).'/'.$imagen: asset('universidades/UASD/Escudo_UASD_1.jpg'); @endphp
             @if(isset($imagen) && isset($name) && isset($acronym))
-                <span style="display:block;text-align: center;">
-                    <img src="{{ $img }}"
-                         alt="logo universidad"
-                         width="100" height="100" align="bottom" border="0"/>
+                <span class="d-block text-center">
+                    <img src="{{ $img }}" alt="logo universidad" width="{{ $width }}" height="{{ $height }}" align="bottom" border="0"/>
                 </span>
             @else
                 <span style="display: block;text-align: center; ">
@@ -17,6 +15,7 @@
                          width="100" height="100" name="1 Imagen" align="bottom" border="0"/>
                </span>
             @endif
+            <!--<img src="{{ $img }}" class="background-logo" border="0"/>-->
         </div>
         @php $name = (isset($name)) ? $name: "Nombre Universidad";@endphp
         <p></p>
@@ -117,21 +116,3 @@
         <p align="center"><a name="_GoBack"></a>
     </form>
 </div>
-<style>
-    #isoTipoUniversidad {
-        display: block;
-        width: 235px;
-        height: auto;
-        margin: auto;
-    }
-
-    .universityNameSpan {
-        text-align: center;
-        font-size: 25px;
-        margin-top: -5px;
-    }
-
-    h1 {
-        text-align: center;
-    }
-</style>

@@ -3,37 +3,74 @@
         <div id="isoTipoUniversidad" class="text-center">
             <span style="display: block;text-align: center; ">
                     <img src="{{ $params['rutaImagenHidden'] }}" alt="logo universidad"
-                         width="170" height="160" name="1 Imagen" align="bottom" border="0"/>
+                         width="{{ $params['inputWidth'] }}" height="{{ $params['inputHeight'] }}"
+                         align="bottom" border="0"/>
                </span>
         </div>
-        <h1 style="text-align: center" class="universityNameSpan">{{ $params['nombreUniversidadHidden'] }}</h1>
-        @php $hidden = (strlen(trim($params['InputFacultad'])) > 0)? '':'d-none'  @endphp
-        <p class="{{ $hidden }}"></p>
-        <p align="center {{ $hidden }}">
+        <h1 style="text-align: center; color:{{ $params['InputColor'] }};"
+            class="universityNameSpan">{{ $params['nombreUniversidadHidden'] }}</h1>
+        @php $hidden = (isset($params['facultadCheck']))? '':'d-none'  @endphp
+        <p align="center" class="{{ $hidden }}">
             <span style="font-size: large;">
                 <strong class="facultyNameSpan">{{ $params['InputFacultad'] }}</strong>
             </span>
         </p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Asignatura</strong></span></p>
-        <p align="center"><span style="font-size: large;" class="subjectSpan">{{ $params['InputSubject'] }}</span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+                <strong>Asignatura</strong>
+            </span>
+        </p>
+        <p align="center">
+            <span style="font-size: large;" class="subjectSpan">
+                {{ $params['InputSubject'] }}
+            </span>
+        </p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Téma</strong></span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};"><strong>Téma</strong>
+            </span>
+        </p>
         <p align="center"><span style="font-size: large;" class="topicSpan">{{ $params['InputToPic'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Nombre</strong></span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+                <strong>Nombre</strong>
+            </span>
+        </p>
         <p align="center"><span style="font-size: large;" class="studentName">{{ $params['InputName'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Matrícula</strong></span></p>
-        <p align="center"><span style="font-size: large;" class="enrollmentSpan"> {{ $params['InputMatricula'] }}</span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+                @if(strpos($params['InputMatricula'], ',') !== false)
+                    <strong>Matrículas</strong>
+                @else
+                    <strong>Matrícula</strong>
+                @endif
+            </span>
+        </p>
+        <p align="center"><span style="font-size: large;"
+                                class="enrollmentSpan"> {!! $params['inputHiddenMatriculas'] !!}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Facilitador</strong></span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+                <strong>Facilitador</strong>
+            </span>
+        </p>
         <p align="center"><span style="font-size: large;" class="teacherSpan">{{ $params['InputTeacher'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Secci&oacute;n</strong></span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+                <strong>Secci&oacute;n</strong>
+            </span>
+        </p>
         <p align="center"><span style="font-size: large;">{{ $params['InputSeccion'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center"><span style="font-size: large;"><strong>Fecha de entrega</strong></span></p>
+        <p class="subtitle" align="center">
+            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+                <strong>Fecha de entrega</strong>
+            </span>
+        </p>
         <p align="center"><span style="font-size: large;" class="DeadlineSpan">{{ $params['deadline'] }}</span></p>
     </form>
 </div>
@@ -41,7 +78,7 @@
     #isoTipoUniversidad {
         display: block;
         width: 235px;
-        height: 185px;
+        height: 120px;
         margin: auto;
     }
 
@@ -54,7 +91,12 @@
     h1 {
         text-align: center;
     }
-    .subtitle{
+
+    .subtitle {
         margin-top: -12.5px;
+    }
+
+    .d-none {
+        display: none;
     }
 </style>

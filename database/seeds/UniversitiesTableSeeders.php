@@ -36,5 +36,45 @@ class UniversitiesTableSeeders extends Seeder
             'name' => 'Universidad APEC',
             'acronym' => 'UNAPEC',
         ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Universidad Iberoamericana',
+            'acronym' => 'UNIBE',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Pontificia Universidad Católica Madre y Maestra',
+            'acronym' => 'PUCMM',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Universidad Nacional Pedro Henríquez Ureña',
+            'acronym' => 'UNPHU',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Instituto Tecnológico de Las Américas',
+            'acronym' => 'ITLA',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Universidad Tecnológica de Santiago',
+            'acronym' => 'UTESA',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Instituto Cultural Domínico Americano',
+            'acronym' => 'ICDA',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Universidad Federico Henríquez y Carvajal',
+            'acronym' => 'UFHEC',
+        ]);
+
+        DB::table('universities')->insert([
+            'name' => 'Otra',
+            'acronym' => 'OTRA',
+        ]);
     }
 }

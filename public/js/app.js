@@ -41182,45 +41182,108 @@ function (_Util) {
 var app = new App();
 $(document).ready(function () {
   app.initPlugins();
-  var $hojaContent = $('#hoja-content');
-  var selectUniversityId = '#selectUniversity';
-  var $selectUniversityObj = $(selectUniversityId);
-  var $studentName = $('.studentName');
-  var $InputName = $('#InputName');
-  var $enrollmentSpan = $('.enrollmentSpan');
-  var $InputMatricula = $('#InputMatricula');
-  var $toPicSpan = $('.toPicSpan');
-  var $inputToPic = $('#InputToPic');
-  var $teacherSpan = $('.teacherSpan');
-  var $InputTeacher = $('#InputTeacher');
-  var $deadlineSpan = $('.DeadlineSpan');
-  var $InputFacultad = $('#InputFacultad');
-  var $facultyNameSpan = $('.facultyNameSpan');
-  var $printBtn = $('.btn-print');
-  var $datepicker = $('#datepicker');
-  var $facultadCheck = $('#facultadCheck');
-  var $facultadPadre = $('#facultadPadre');
-  var $InputColor = $('#InputColor');
-  var $InputSeccion = $('#InputSeccion');
-  var $seccionSpan = $('.seccionSpan');
-  var $InputSubject = $('#InputSubject');
-  var $subjectSpan = $('.subjectSpan');
-  var $labelColor = $('.labelColor');
+  var $hojaContent = $('#hoja-content'),
+      selectUniversityId = '#selectUniversity',
+      $selectUniversityObj = $(selectUniversityId),
+      $studentName = $('.studentName'),
+      $InputName = $('#InputName'),
+      $enrollmentSpan = $('.enrollmentSpan'),
+      $InputMatricula = $('#InputMatricula'),
+      $universityNameSpan = $('.universityNameSpan'),
+      $toPicSpan = $('.toPicSpan'),
+      $inputToPic = $('#InputToPic'),
+      $teacherSpan = $('.teacherSpan'),
+      $InputTeacher = $('#InputTeacher'),
+      $deadlineSpan = $('.DeadlineSpan'),
+      $InputFacultad = $('#InputFacultad'),
+      $facultyNameSpan = $('.facultyNameSpan'),
+      $printBtn = $('.btn-print'),
+      $datepicker = $('#datepicker'),
+      $facultadCheck = $('#facultadCheck'),
+      $facultadPadre = $('#facultadPadre'),
+      $InputColor = $('#InputColor'),
+      $InputSeccion = $('#InputSeccion'),
+      $seccionSpan = $('.seccionSpan'),
+      $InputSubject = $('#InputSubject'),
+      $subjectSpan = $('.subjectSpan'),
+      $labelColor = $('.labelColor'),
+      $divNombreUniversidad = $('#divNombreUniversidad'),
+      $divLogoUniversidadFile = $('#divLogoUniversidadFile'),
+      $InputUniversityName = $('#InputUniversityName'),
+      $logoFile = $('#logoFile'),
+      $isoTipoUniversidad = $('#isoTipoUniversidad'),
+      $logoIMG = $isoTipoUniversidad.find('span').find('img'),
+      urlDefaultLogoIcon = app.getBaseUrl() + 'img/default-logo-icon.png',
+      $nombreUniversidadHidden = $('#nombreUniversidadHidden'),
+      $rutaImagenHidden = $('#rutaImagenHidden'),
+      $inputWidthLogoUniversidad = $('#inputWidth'),
+      $inputHeightLogoUniversidad = $('#inputHeight'),
+      $inputHiddenMatriculas = $('#inputHiddenMatriculas');
   $selectUniversityObj.chosen().change(function (evt, params) {
     var selected = params.selected != undefined ? params.selected : "";
     var optionSelected = $(selectUniversityId + ' option:selected').text().trim();
     var siglasUniversidad = optionSelected.split(' (')[1].replace(')', '');
-    window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
+
+    if (optionSelected.toString().toLocaleLowerCase().includes('otra')) {
+      app.removeClass($divNombreUniversidad, 'd-none');
+      app.removeClass($divLogoUniversidadFile, 'd-none');
+      $logoIMG.attr('src', urlDefaultLogoIcon);
+      $InputUniversityName.attr('required', 'required');
+      $universityNameSpan.html('Nombre Universidad');
+    } else {
+      window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
+    }
   });
   /*************************************** Campo Nombre ********************************************/
 
   var studentNameDefaultText = $studentName.text(); //Texto por defecto
 
   app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
-  /************************************** Campo Matricula ******************************************/
+  /************************************** Campo Matrícula ******************************************/
 
   var enrollmentSpanDefaultText = $enrollmentSpan.text();
-  app.escribirEnHoja($InputMatricula, $enrollmentSpan, enrollmentSpanDefaultText);
+  $InputMatricula.on('keyup', function (e) {
+    var matriculasHTMLConSaltosDeLinea = '';
+    var currentValue = $(this).val();
+    var arrayMatriculasSeparadasPorComas = currentValue.split(',');
+    var sizeArreglo = arrayMatriculasSeparadasPorComas.length;
+
+    if (sizeArreglo > 1) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = arrayMatriculasSeparadasPorComas[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var i = _step.value;
+          matriculasHTMLConSaltosDeLinea += i + '<br />';
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    } else {
+      matriculasHTMLConSaltosDeLinea = currentValue;
+    }
+
+    if (currentValue.trim().length > 0) {
+      $enrollmentSpan.html(matriculasHTMLConSaltosDeLinea);
+      $inputHiddenMatriculas.val(matriculasHTMLConSaltosDeLinea);
+    } else {
+      $enrollmentSpan.html(enrollmentSpanDefaultText);
+      $inputHiddenMatriculas.val(enrollmentSpanDefaultText);
+    }
+  });
   /************************************** Campo Tema **********************************************************/
 
   var ToPicSpanDefaultText = $toPicSpan.text();
@@ -41321,6 +41384,54 @@ $(document).ready(function () {
       return _ref.apply(this, arguments);
     };
   }());
+  $InputUniversityName.on('keyup', function (e) {
+    var $selector = $(this);
+    var currentValue = $selector.val();
+    $nombreUniversidadHidden.val(currentValue);
+    app.escribirEnHoja($selector, $universityNameSpan, "Nombre Universidad");
+  });
+  $logoFile.on('change',
+  /*#__PURE__*/
+  function () {
+    var _ref2 = _asyncToGenerator(
+    /*#__PURE__*/
+    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
+      var $selector, imgBase64;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              $selector = $(this);
+              _context2.next = 3;
+              return app.getBase64($selector[0].files[0]);
+
+            case 3:
+              imgBase64 = _context2.sent;
+              $logoIMG.attr('src', imgBase64);
+              $rutaImagenHidden.val(imgBase64);
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
+  $inputWidthLogoUniversidad.on('change', function (e) {
+    var $selector = $(this);
+    var width = $selector.val();
+    $logoIMG.attr('width', width);
+  });
+  $inputHeightLogoUniversidad.on('change', function (e) {
+    var $selector = $(this);
+    var height = $selector.val();
+    $logoIMG.attr('height', height);
+  });
 });
 
 /***/ }),
@@ -41415,17 +41526,7 @@ function () {
   _createClass(Util, [{
     key: "getBaseUrl",
     value: function getBaseUrl() {
-      var url = "";
-      var loc = window.location;
-      var pathparts = location.pathname.split('/');
-
-      if (location.host == 'localhost') {
-        url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + '/' + pathparts[1] + '/' + pathparts[2].trim('/') + '/';
-      } else {
-        url = loc.protocol + "//" + loc.hostname + (loc.port ? ":" + loc.port : "") + "/";
-      }
-
-      return url;
+      return $('meta[name="public-path"]').attr('content');
     }
   }, {
     key: "getToken",
@@ -41525,11 +41626,11 @@ function () {
     key: "escribirEnHoja",
     value: function escribirEnHoja($field, $target, defaultText) {
       $field.on('keyup', function (e) {
-        var selector = $(e.target);
-        var valor = selector.val();
+        var $selector = $(e.target);
+        var value = $selector.val();
 
-        if (valor.trim().length > 0) {
-          $target.html(valor);
+        if (value.trim().length > 0) {
+          $target.html(value);
         } else {
           $target.html(defaultText);
         }
@@ -41718,6 +41819,22 @@ function () {
         return 'Desconocido';
       }
     }
+  }, {
+    key: "getBase64",
+    value: function getBase64(file) {
+      return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = function () {
+          return resolve(reader.result);
+        };
+
+        reader.onerror = function (error) {
+          return reject(error);
+        };
+      });
+    }
   }]);
 
   return Util;
@@ -41743,8 +41860,8 @@ function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/lahoja/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/lahoja/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\lahoja\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\lahoja\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
