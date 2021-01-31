@@ -19,8 +19,8 @@
         </div>
         @php $name = (isset($name)) ? $name: "Nombre Universidad";@endphp
         <p></p>
-        <h3 style="text-align: center;font-size: 18px;" class="universityNameSpan labelColor">
-            <strong>{{ $name }}</strong>
+        <h3 style="text-align: center;font-size: 18px;" class="universityNameSpan">
+            <strong class="labelColor">{{ $name }}</strong>
         </h3>
         <p align="center">
             <span class="text-center facultyNameSpan d-none labelColor">

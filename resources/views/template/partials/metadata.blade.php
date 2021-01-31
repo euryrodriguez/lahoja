@@ -30,5 +30,7 @@
 
 <title>@yield('title') lahoja.org | Hojas de presentación</title>
 
-<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+@include('template.partials.fonts')
+@include('template.partials.clases')
+
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">

@@ -41147,6 +41147,10 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
@@ -41171,10 +41175,27 @@ function (_Util) {
     _classCallCheck(this, App);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this));
+    _this.defaultFont = 'gfsdidot';
     _this.baseUrl = _this.getBaseUrl();
     _this.token = _this.getToken();
     return _this;
   }
+
+  _createClass(App, [{
+    key: "changeFont",
+    value: function changeFont(fuente) {
+      var labelColorArr = $('.labelColor');
+      $(labelColorArr).each(function (index, element) {
+        var $selector = $(element);
+        app.setFont($selector, fuente);
+      });
+    }
+  }, {
+    key: "setFont",
+    value: function setFont($selector, clase) {
+      $selector.parent('p, h3').attr('class', clase);
+    }
+  }]);
 
   return App;
 }(_util__WEBPACK_IMPORTED_MODULE_1__["Util"]);
@@ -41218,7 +41239,9 @@ $(document).ready(function () {
       $rutaImagenHidden = $('#rutaImagenHidden'),
       $inputWidthLogoUniversidad = $('#inputWidth'),
       $inputHeightLogoUniversidad = $('#inputHeight'),
-      $inputHiddenMatriculas = $('#inputHiddenMatriculas');
+      $inputSizeFont = $('#inputSizeFont'),
+      $inputHiddenMatriculas = $('#inputHiddenMatriculas'),
+      $selectFuente = $('#selectFuente');
   $selectUniversityObj.chosen().change(function (evt, params) {
     var selected = params.selected != undefined ? params.selected : "";
     var optionSelected = $(selectUniversityId + ' option:selected').text().trim();
@@ -41233,6 +41256,15 @@ $(document).ready(function () {
     } else {
       window.location = app.getBaseUrl() + "universidad/" + siglasUniversidad.toLocaleLowerCase();
     }
+  }); //Setear fuente por defecto disparando evento change
+
+  app.changeFont(app.defaultFont);
+  $selectFuente.val(app.defaultFont);
+  $selectFuente.trigger("chosen:updated");
+  $selectFuente.chosen().change(function (evt, params) {
+    var selected = params.selected != undefined ? params.selected : "";
+    var optionSelected = $('#' + $selectFuente.attr('id') + ' option:selected').text().trim();
+    app.changeFont(selected);
   });
   /*************************************** Campo Nombre ********************************************/
 
@@ -41431,6 +41463,18 @@ $(document).ready(function () {
     var $selector = $(this);
     var height = $selector.val();
     $logoIMG.attr('height', height);
+  });
+  $inputSizeFont.trigger('change');
+  $inputSizeFont.on('change', function (e) {
+    var $selector = $(this);
+    var size = $selector.val();
+    var labelColorArr = $('.labelColor');
+    $(labelColorArr).each(function (index, element) {
+      var $selector = $(element);
+      $selector.css({
+        'font-size': "".concat(size, "px")
+      });
+    });
   });
 });
 

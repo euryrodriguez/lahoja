@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Font;
 use App\Models\Imagen;
 use App\Models\Universidad;
 use Illuminate\Http\Request;
@@ -10,10 +11,13 @@ class IndexController extends Controller
 {
     public function index($acronym = null)
     {
-        $all = Universidad::all();
+        $fonts = Font::all();
+        $universities = Universidad::all();
 
         if (null == $acronym) {
-            return view('index')->with('universities', $all);
+            return view('index')
+                ->with('fonts', $fonts)
+                ->with('universities', $universities);
         } else {
 
             $university = Universidad::where('acronym', '=', $acronym)->first();
@@ -27,7 +31,8 @@ class IndexController extends Controller
                 if(null != $imagen){
                     return view('index')
                         ->with('acronym', $acronym)
-                        ->with('universities', $all)
+                        ->with('fonts', $fonts)
+                        ->with('universities', $universities)
                         ->with('name', $university->name)
                         ->with('imagen', $imagen->filename)
                         ->with('width', $imagen->width)
@@ -44,17 +49,27 @@ class IndexController extends Controller
 
     public function getDocument($output, Request $request)
     {
+        $fonts = Font::all();
         $params = $request->all();
 
         switch ($output) {
             case 'docx':
-                $view = view('outputs.docx')->with('params', $params)->render();
+                $view = view('outputs.docx')
+                    ->with('params', $params)
+                    ->with('fonts', $fonts)
+                    ->render();
                 break;
             case 'print':
-                $view = view('outputs.print')->with('params', $params)->render();
+                $view = view('outputs.print')
+                    ->with('params', $params)
+                    ->with('fonts', $fonts)
+                    ->render();
                 break;
             default:
-                $view = view('outputs.print')->with('params', $params)->render();
+                $view = view('outputs.print')
+                    ->with('fonts', $fonts)
+                    ->with('params', $params)
+                    ->render();
                 break;
         }
 

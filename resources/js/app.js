@@ -4,8 +4,21 @@ import {toastr} from "./bootstrap";
 class App extends Util {
     constructor() {
         super();
+        this.defaultFont = 'gfsdidot';
         this.baseUrl = this.getBaseUrl();
         this.token = this.getToken();
+    }
+
+    changeFont(fuente) {
+        const labelColorArr = $('.labelColor');
+        $(labelColorArr).each((index, element) => {
+            let $selector = $(element);
+            app.setFont($selector, fuente);
+        });
+    }
+
+    setFont($selector, clase) {
+        $selector.parent('p, h3').attr('class', clase);
     }
 }
 
@@ -51,7 +64,9 @@ $(document).ready(() => {
         $rutaImagenHidden = $('#rutaImagenHidden'),
         $inputWidthLogoUniversidad = $('#inputWidth'),
         $inputHeightLogoUniversidad = $('#inputHeight'),
-        $inputHiddenMatriculas = $('#inputHiddenMatriculas');
+        $inputSizeFont = $('#inputSizeFont'),
+        $inputHiddenMatriculas = $('#inputHiddenMatriculas'),
+        $selectFuente = $('#selectFuente');
 
     $selectUniversityObj.chosen().change((evt, params) => {
         const selected = (params.selected != undefined) ? params.selected : "";
@@ -68,13 +83,21 @@ $(document).ready(() => {
         }
     });
 
+    //Setear fuente por defecto disparando evento change
+    app.changeFont(app.defaultFont);
+    $selectFuente.val(app.defaultFont);
+    $selectFuente.trigger("chosen:updated");
+    $selectFuente.chosen().change((evt, params) => {
+        const selected = (params.selected != undefined) ? params.selected : "";
+        const optionSelected = $('#' + $selectFuente.attr('id') + ' option:selected').text().trim();
+        app.changeFont(selected);
+    });
+
     /*************************************** Campo Nombre ********************************************/
     const studentNameDefaultText = $studentName.text(); //Texto por defecto
     app.escribirEnHoja($InputName, $studentName, studentNameDefaultText);
     /************************************** Campo Matrícula ******************************************/
-
     const enrollmentSpanDefaultText = $enrollmentSpan.text();
-
     $InputMatricula.on('keyup', function (e) {
         let matriculasHTMLConSaltosDeLinea = '';
         const currentValue = $(this).val();
@@ -95,7 +118,6 @@ $(document).ready(() => {
             $inputHiddenMatriculas.val(enrollmentSpanDefaultText);
         }
     });
-
     /************************************** Campo Tema **********************************************************/
     const ToPicSpanDefaultText = $toPicSpan.text();
     app.escribirEnHoja($inputToPic, $toPicSpan, ToPicSpanDefaultText);
@@ -190,5 +212,17 @@ $(document).ready(() => {
         const height = $selector.val();
         $logoIMG.attr('height', height);
     });
+
+    $inputSizeFont.trigger('change');
+    $inputSizeFont.on('change', function (e) {
+        const $selector = $(this);
+        const size = $selector.val();
+        const labelColorArr = $('.labelColor');
+        $(labelColorArr).each((index, element) => {
+            let $selector = $(element);
+            $selector.css({'font-size': `${size}px`});
+        });
+    });
+
 
 });

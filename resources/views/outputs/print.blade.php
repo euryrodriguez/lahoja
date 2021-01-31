@@ -1,3 +1,6 @@
+@include('template.partials.fonts')
+@include('template.partials.clases')
+@php $fontSize = $params['inputSizeFont']."px;"; @endphp
 <div id="hoja-content" class="hoja-shadow">
     <form action="" id="hoja-content-form" class="">
         <div id="isoTipoUniversidad" class="text-center">
@@ -8,40 +11,40 @@
                </span>
         </div>
         <h1 style="text-align: center; color:{{ $params['InputColor'] }};"
-            class="universityNameSpan">{{ $params['nombreUniversidadHidden'] }}</h1>
+            class="universityNameSpan {{ $params['selectFuente'] }}">{{ $params['nombreUniversidadHidden'] }}</h1>
         @php $hidden = (isset($params['facultadCheck']))? '':'d-none'  @endphp
         <p align="center" class="{{ $hidden }}">
-            <span style="font-size: large;">
-                <strong class="facultyNameSpan">{{ $params['InputFacultad'] }}</strong>
+            <span style="font-size: {{ $fontSize }};">
+                <strong class="facultyNameSpan {{ $params['selectFuente'] }}">{{ $params['InputFacultad'] }}</strong>
             </span>
         </p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+        <p class="subtitle {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }}color:{{ $params['InputColor'] }};">
                 <strong>Asignatura</strong>
             </span>
         </p>
         <p align="center">
-            <span style="font-size: large;" class="subjectSpan">
+            <span style="font-size: {{ $fontSize }}" class="subjectSpan">
                 {{ $params['InputSubject'] }}
             </span>
         </p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};"><strong>Téma</strong>
+        <p class="subtitle {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }}color:{{ $params['InputColor'] }};"><strong>Téma</strong>
             </span>
         </p>
         <p align="center"><span style="font-size: large;" class="topicSpan">{{ $params['InputToPic'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+        <p class="subtitle {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }}color:{{ $params['InputColor'] }};">
                 <strong>Nombre</strong>
             </span>
         </p>
-        <p align="center"><span style="font-size: large;" class="studentName">{{ $params['InputName'] }}</span></p>
+        <p align="center"><span style="font-size: {{ $fontSize }}" class="studentName">{{ $params['InputName'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+        <p class="subtitle {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }};color:{{ $params['InputColor'] }};">
                 @if(strpos($params['InputMatricula'], ',') !== false)
                     <strong>Matrículas</strong>
                 @else
@@ -49,25 +52,25 @@
                 @endif
             </span>
         </p>
-        <p align="center"><span style="font-size: large;"
+        <p align="center"><span style="font-size: {{ $fontSize }}"
                                 class="enrollmentSpan"> {!! $params['inputHiddenMatriculas'] !!}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+        <p class="subtitle {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }}color:{{ $params['InputColor'] }};">
                 <strong>Facilitador</strong>
             </span>
         </p>
-        <p align="center"><span style="font-size: large;" class="teacherSpan">{{ $params['InputTeacher'] }}</span></p>
+        <p align="center"><span style="font-size: {{ $fontSize }}" class="teacherSpan">{{ $params['InputTeacher'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+        <p class="subtitle {{ $params['selectFuente'] }} {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }}color:{{ $params['InputColor'] }};">
                 <strong>Secci&oacute;n</strong>
             </span>
         </p>
         <p align="center"><span style="font-size: large;">{{ $params['InputSeccion'] }}</span></p>
         <p align="center">&nbsp;</p>
-        <p class="subtitle" align="center">
-            <span style="font-size: large;color:{{ $params['InputColor'] }};">
+        <p class="subtitle {{ $params['selectFuente'] }}" align="center">
+            <span style="font-size: {{ $fontSize }}color:{{ $params['InputColor'] }};">
                 <strong>Fecha de entrega</strong>
             </span>
         </p>

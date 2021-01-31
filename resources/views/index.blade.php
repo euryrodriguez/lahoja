@@ -195,6 +195,28 @@
                                                value="{{ (isset($height))? $height: '100' }}">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group p-1">
+                                        <label for="selectFuente" class="font-weight-bold">Fuente:</label>
+                                        <select name="selectFuente" class="chosen-select" id="selectFuente">
+                                            @foreach($fonts as $font)
+                                            <option value="{{ $font->name }}">{{ ucfirst($font->font_family) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="inputSizeFont" class="font-weight-bold">Tamaño Fuente:</label>
+                                        <label class="label-mandatory">*</label>
+                                        <input type="number" class="form-control form-control-sm" required
+                                               data-toggle="tooltip" data-placement="top" title="Tamaño Fuente"
+                                               id="inputSizeFont"
+                                               name="inputSizeFont"
+                                               placeholder="Tamaño Fuente"
+                                               value="20">
+                                    </div>
+                                </div>
                             </div>
                             @if(isset($imagen) && isset($name) && isset($acronym))
                                 @php $img = asset('universidades').'/'.strtoupper($acronym).'/'.$imagen; @endphp
