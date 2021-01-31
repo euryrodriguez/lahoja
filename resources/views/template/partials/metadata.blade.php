@@ -28,7 +28,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="public-path" content="{{ asset('/') }}">
 
-<title>@yield('title') lahoja.org | Hojas de presentación</title>
+<title>@yield('title') lahoja | Hojas de presentación</title>
 
 @include('template.partials.fonts')
 @include('template.partials.clases')
