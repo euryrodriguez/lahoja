@@ -1,4 +1,4 @@
-<footer class="pb-1 fixed-bottom">
+<footer class="pb-1">
     <div class="col-md-12 text-center">
         <ul class="links-display-inline">
             <li class="mt-4"><a href="{{ asset('/universidad/uasd') }}"> UASD </a> &nbsp;|</li>
